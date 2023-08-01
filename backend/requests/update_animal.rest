@@ -1,0 +1,12 @@
+
+PUT http://localhost:3001/api/animals/64bea422887d317421c6e141
+Content-Type: application/json
+
+{
+    "comments": [
+        {
+        "content": "test comment",
+        "username": "vmneva"
+        }
+    ]
+}

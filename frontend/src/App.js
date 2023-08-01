@@ -1,25 +1,133 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useRef } from 'react'
+import './index.css'
 
-function App() {
+import Animals from './components/Animals'
+import LoginForm from './components/LoginForm'
+import LogoutForm from './components/LogoutForm'
+import Togglable from './components/Togglable'
+import Notification from './components/Notification'
+import ErrorNotification from './components/ErrorNotification'
+
+import animalService from './services/animals'
+import loginService from './services/login'
+import SignUpForm from './components/SignUpForm'
+
+const App = () => {
+  const [animals, setAnimals] = useState([])
+  const [users, setUsers] = useState([])
+  const [infoMessage, setInfoMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
+
+  const [username, setUsername] = useState('') 
+  const [password, setPassword] = useState('')
+  const [user, setUser] = useState(null)
+  const [type, setType] = useState(null)
+
+  useEffect(() => {
+    animalService
+      .getAll()
+      .then(initialAnimals => {
+        setAnimals(initialAnimals)
+      })
+  }, [])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedRescueAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      setType(type)
+      animalService.setToken(user.token)
+    }
+  }, [])
+
+  const animalRef = useRef()
+
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    try {
+      const user = await loginService.login({username, password,})
+      window.localStorage.setItem(
+        'loggedRescueAppUser', JSON.stringify(user)
+      )
+      animalService.setToken(user.token)
+      setUser(user)
+      setUsername('')
+      setPassword('')
+    } catch (exception) {
+      setErrorMessage('wrong username or password')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 3000)
+    }
+  }
+
+  const handleLogout = async () => {
+    window.localStorage.clear()
+    setUsername('')
+    setPassword('')
+  }
+
+  const toggleFavourite = id => {
+    const animal = animals.find(a => a.id === id)
+    const changedAnimal = { ...animal, favourite: !animal.favourite }
+    animalService
+      .update(id, changedAnimal)
+      .then(returnedAnimal => {
+        setAnimals(animals.map(animal => animal.id !== id ? animal : returnedAnimal))
+      })
+  }
+
+  const deleteAnimal = id => {
+    const deletedAnimal = animals.find(a => a.id === id)
+    if (window.confirm(`Delete "${deletedAnimal.name}"?`)) {
+      animalService
+        .poista(deletedAnimal.id)
+        .then(setAnimals(animals.filter((deletedAnimal) => deletedAnimal.id !== id)))  
+        .then(setInfoMessage(`${deletedAnimal.name} deleted`))
+        .then(setTimeout(() => {
+            setInfoMessage(null)
+            }, 3000)
+          )
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div>
+      {!user &&
+      <div>
+        <ErrorNotification message={errorMessage} />
+        <Notification message={infoMessage} />
+        <SignUpForm 
+          users = {users} setUsers = {setUsers}
+          setErrorMessage = {setErrorMessage} setInfoMessage = {setInfoMessage}
+        />
+        <LoginForm 
+          username = {username} password = {password} users={users}
+          handleLogin = {handleLogin}
+          handleUsernameChange={({ target }) => setUsername(target.value)}
+          handlePasswordChange={({ target }) => setPassword(target.value)}
+        />
+      </div>
+      }
+      {user &&
+      <div>
+       {user.type==="admin" && <h1>Rescue ADMIN</h1> }
+       {user.type==="client" && <h1>Rescue Center</h1> }
+        <LogoutForm 
+        user = {user} handleLogout = {handleLogout}
+      />
+      <Animals
+        animals={animals} 
+        toggleFavourite={toggleFavourite} 
+        deleteAnimal={deleteAnimal}
+        user={user}
+      />
+      <br></br>
+      </div>
+      }
+  </div>
+  )
 }
 
-export default App;
+export default App
