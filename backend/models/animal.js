@@ -1,11 +1,20 @@
 const mongoose = require('mongoose')
 
 const animalSchema = new mongoose.Schema({
-  name: String,
-  type: String, //dog/cat
+  name: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
   date_of_birth: String,
-  sex: String, //female/male
-  image: String,
+  sex: String, 
+  image: {
+    type: String,
+    required: true,
+  },
   breed: String,
   location: String,
   origin: String, //from which country

@@ -3,7 +3,6 @@ import { useState } from 'react'
 import animalService from '../services/animals'
 
 const AnimalForm = ({
-      animal,
       animals,
       setAnimals,
     }) => {
@@ -21,18 +20,35 @@ const AnimalForm = ({
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
-        setAnimalData((prevData) => ({
+        setAnimalData(prevData => ({
             ...prevData,
             [name]: value,
         }))
     }
+
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          if (file.type === 'image/jpeg') {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              setAnimalData((prevData) => ({
+                ...prevData,
+                image: reader.result, // Store the Base64 string representation in the state
+              }));
+            };
+            reader.readAsDataURL(file);
+          } else {
+            alert('Please upload a JPEG image.');
+          }
+        }
+      }
 
     const addAnimal = (event) => {
         event.preventDefault()
         const selectedSex = document.querySelector('#sex')
         const selectedLocation = document.querySelector('#location')
         const selectedType = document.querySelector('#type')
-        const image = document.querySelector('#image')
         const sex = selectedSex.options[selectedSex.selectedIndex].value
         const location = selectedLocation.options[selectedLocation.selectedIndex].value
         const type = selectedType.options[selectedType.selectedIndex].value
@@ -42,7 +58,7 @@ const AnimalForm = ({
             type: type,
             date_of_birth: animalData.date_of_birth,
             sex: sex,
-            image: image,
+            image: animalData.image,
             breed: animalData.breed,
             location: location,
             origin: animalData.origin, 
@@ -55,7 +71,17 @@ const AnimalForm = ({
             .create(animalObject)
             .then(returnedAnimal => {
                 setAnimals(animals.concat(returnedAnimal))
-              }) 
+            }) 
+        setAnimalData({
+            name: '',
+            type: '',
+            dateOfBirth: '',
+            sex: '',
+            image: '',
+            breed: '',
+            location: '',
+            origin: '',
+            })
     }
     return (
         <div className='AnimalForm'>
@@ -97,11 +123,14 @@ const AnimalForm = ({
         Image:
         <input
           type="file"
-          id="image"
+          accept=".jpg,.jpeg"
           name="image"
-          accept="image/*"
+          onChange={handleImageUpload}
         />
       </label>
+      {animalData.image && (
+        <img src={animalData.image} alt="Animal Preview" style={{ width: '200px' }} />
+      )}
       <br />
       <label>
         Breed:

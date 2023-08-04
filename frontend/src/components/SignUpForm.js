@@ -46,6 +46,15 @@ const SignUpForm = ({
         setPassword('')
     }
 
+    const togglePassword = () => {
+      let input = document.getElementById("salasana");
+      if (input.type === "password") {
+        input.type = "text";
+      } else {
+        input.type = "password";
+      }
+    }
+
   return (
       <div className='signup'>
         <h2>Create account</h2>
@@ -68,11 +77,13 @@ const SignUpForm = ({
           </div>
           <div>
             <input
+            id="salasana"
               type="password"
               value={password}
               onChange={handlePasswordAdd}
               placeholder='password'
             />
+            <input type="checkbox" onClick={togglePassword}/>Show Password
             <br></br>
             <button onClick={addUser}>sign up</button> 
           </div>
