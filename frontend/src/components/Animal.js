@@ -1,20 +1,21 @@
 import '../index.css'
-import Comments from './Comments';
-import { ReactComponent as HeartIcon } from '../icons/heart.svg';
-import { ReactComponent as MaleIcon } from '../icons/male.svg';
-import { ReactComponent as FemaleIcon } from '../icons/female.svg';
-
+import CommentForm from './CommentForm'
+import Comment from './Comment'
+import { ReactComponent as HeartIcon } from '../icons/heart.svg'
+import { ReactComponent as MaleIcon } from '../icons/male.svg'
+import { ReactComponent as FemaleIcon } from '../icons/female.svg'
 
 const Animal = ({
       animal, 
       animals,
       deleteAnimal,
       toggleFavourite,
+      setAnimals,
       user
     }) => {
 
-    const isFavourite = animal.favourite; 
-    const comments = animal.comments;
+    const isFavourite = animal.favourite
+    const comments = animal.comments || []
 
     return (
         <div className='dog'>
@@ -36,11 +37,26 @@ const Animal = ({
         {user.type==="admin" &&
             <button onClick={deleteAnimal}>delete</button> 
         } 
-        <Comments 
-            comments={comments} 
-            user={user}
+        <div>
+        <CommentForm
+          animal={animal}
+          user={user}
+          animals={animals}
+          setAnimals={setAnimals}
+        />
+        <h3>Comments:</h3>
+        {comments.map(comment => !comment===undefined ? 
+        <p>No comments yet!</p> :
+        <Comment
+            key={comment.id}
+            comment={comment} 
             animal={animal}
-            animals={animals} />
+            animals={animals}
+            setAnimals={setAnimals}
+            user={user}
+        />
+        )}
+        </div>
         </div>
     )
 }

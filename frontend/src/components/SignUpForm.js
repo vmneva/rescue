@@ -24,8 +24,7 @@ const SignUpForm = ({
 
     const addUser = async (event) => {
         event.preventDefault()
-        const selectedType = document.querySelector('#select1');
-        const type = selectedType.options[selectedType.selectedIndex].value;
+        const type = "client"
         try {
           const newUser = await userService.create({
             name, username, password, type
@@ -51,10 +50,6 @@ const SignUpForm = ({
       <div className='signup'>
         <h2>Create account</h2>
         <form>
-          <select id="select1">
-            <option value="client">Member</option>
-            <option value="admin">Admin</option>
-          </select>
           <div>
             <input
               type="text"

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import './index.css'
 
 import Animals from './components/Animals'
+import AnimalForm from './components/AnimalForm'
 import LoginForm from './components/LoginForm'
 import LogoutForm from './components/LogoutForm'
 import Togglable from './components/Togglable'
@@ -21,7 +22,6 @@ const App = () => {
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
-  const [type, setType] = useState(null)
 
   useEffect(() => {
     animalService
@@ -36,12 +36,11 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
-      setType(type)
       animalService.setToken(user.token)
     }
   }, [])
 
-  const animalRef = useRef()
+  const animalFormRef = useRef()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -114,13 +113,25 @@ const App = () => {
       <div>
        {user.type==="admin" && <h1>Rescue ADMIN</h1> }
        {user.type==="client" && <h1>Rescue Center</h1> }
-        <LogoutForm 
-        user = {user} handleLogout = {handleLogout}
-      />
+      <LogoutForm 
+        user = {user}
+        handleLogout = {handleLogout}
+        />
+      {user.type==="admin" && 
+      <div>
+        <Togglable buttonLabel="Add new animal" ref={animalFormRef}>
+          <AnimalForm 
+            animals={animals} 
+            setAnimals={setAnimals}
+          />
+        </Togglable>
+      </div>
+      }
       <Animals
         animals={animals} 
         toggleFavourite={toggleFavourite} 
         deleteAnimal={deleteAnimal}
+        setAnimals={setAnimals}
         user={user}
       />
       <br></br>
