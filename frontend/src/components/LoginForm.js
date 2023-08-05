@@ -7,7 +7,7 @@ const LoginForm = ({
 }) => {
 
   const togglePassword = () => {
-    let input = document.getElementById("salasana");
+    let input = document.getElementById("salasana1");
     if (input.type === "password") {
       input.type = "text";
     } else {
@@ -29,14 +29,16 @@ const LoginForm = ({
           </div>
           <div>
             <input
-              id="salasana"
+              id="salasana1"
               type="password"
               value={password}
               onChange={handlePasswordChange}
               placeholder='password'
             />
-            <input type="checkbox" onClick={togglePassword}/>Show Password
-            <br></br>
+            <p>
+            <input type="checkbox" onClick={togglePassword}/>
+              Show Password
+            </p>
             <br></br>
             <button type="submit">login</button>
           </div>

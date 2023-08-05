@@ -12,6 +12,7 @@ import ErrorNotification from './components/ErrorNotification'
 import animalService from './services/animals'
 import loginService from './services/login'
 import SignUpForm from './components/SignUpForm'
+import ContactForm from './components/ContactForm'
 
 const App = () => {
   const [animals, setAnimals] = useState([])
@@ -87,9 +88,10 @@ const App = () => {
         .then(setTimeout(() => {
             setInfoMessage(null)
             }, 3000)
-          )
+        )
     }
   }
+
 
   return (
     <div>
@@ -134,9 +136,20 @@ const App = () => {
         setAnimals={setAnimals}
         user={user}
       />
-      <br></br>
+      {user.type==="client" &&
+        <ContactForm
+          setInfoMessage={setInfoMessage}
+          infoMessage={infoMessage}
+        />
+      }
       </div>
       }
+      <div className='contactinformation'>
+        <h3>RescueKeskus</h3>
+        <li>y-tunnus: 123456-7</li>
+        <li>asiakaspalvelu@rescuekeskus.com</li>
+        <li>02 456 122</li>
+      </div>
   </div>
   )
 }

@@ -1,24 +1,268 @@
 img {
-    max-width: 350px;
+    width: 350px;
     height: 400px;
-  }
-  .favourite {
-    border: none;
-    background-color: none;
-    cursor: pointer;
-    background-color: white;
-  }
-  .favourite svg {
-    fill: #ccc;
-    width: 25px;
-    height: 20px;
-    margin-right: auto;
-    border: none;
-  }
-  
-  .favourite.active svg {
-    fill: red;
-    border: none;
-    width: 25px;
-    height: 20px;
-  }
+}
+.animals {
+    display: flex;
+    flex-wrap: wrap;
+}
+.animal {
+  color: white;
+  padding: 10px;
+  background: rgba(16, 18, 0, 0.29);
+  margin: 10px;
+  letter-spacing: 2px; 
+  box-sizing: border-box;
+  border-style: ridge;
+  max-width: 450px;
+}
+
+.favourite {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.favourite svg {
+  fill: #ccc;
+  width: 30px;
+  height: 25px;
+  margin-right: auto;
+  border: none;
+}
+
+.favourite.active svg {
+  fill: red;
+  border: none;
+  width: 30px;
+  height: 25px;
+}
+
+.favouritebutton {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: white;
+}
+.favouritebutton svg {
+  fill: #ccc;
+  width: 25px;
+  height: 20px;
+  margin-right: auto;
+  border: none;
+}
+
+.favouritebutton.active svg {
+  fill: red;
+  border: none;
+  width: 25px;
+  height: 20px;
+}
+
+.male {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: white;
+}
+.male svg {
+  fill: #ccc;
+  width: 25px;
+  height: 20px;
+  margin-right: auto;
+  border: none;
+}
+
+.male.active svg {
+  fill: rgb(0, 78, 203);
+  border: none;
+  width: 25px;
+  height: 20px;
+}
+
+.female {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: white;
+}
+.female svg {
+  fill: #ccc;
+  width: 25px;
+  height: 20px;
+  margin-right: auto;
+  border: none;
+}
+
+.female.active svg {
+  fill: #9f04aa;
+  border: none;
+  width: 25px;
+  height: 20px;
+}
+
+.login {
+  height:350px;
+  max-width:250px;
+  margin:40px auto;
+  border-radius:2px;
+  box-shadow:0px 2px 3px rgba(0, 0, 0, 0.2);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  animation: hi 0.5s;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background:#dcfbce;
+  border-style: dotted;
+  border-color: white;
+  padding: 12px 45px;
+}
+.signup {
+  min-height:350px;
+  max-width:250px;
+  margin:40px auto;
+  border-radius:2px;
+  box-shadow:0px 2px 3px rgba(0, 0, 0, 0.2);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  background:#d7f8f8;
+  padding: 12px 45px;
+  border-style: dotted;
+  border-color: white;
+}
+.login button {
+	border-radius: 20px;
+	border: 1px solid #2ae96d;
+	background-color: #2ae96d;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+
+.login input {
+	background-color: #e6f5e0;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0px;
+	width: 100%;
+}
+
+.signup input {
+	background-color: #e0f4f5;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0px;
+	width: 100%;
+}
+
+.signup button {
+	border-radius: 20px;
+	border: 1px solid #30e8eb;
+	background-color: #30e8eb;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+  cursor: pointer;
+}
+.login p {
+  text-transform: uppercase;
+}
+
+/* Style inputs with type="text", select elements and textareas */
+.contactinfo input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+.contactinfo button[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+.contactinfo button[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.contactinfo {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+
+/* Customize the label (the container) */
+.sexsort {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.sexsort input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.sexsort:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.sexsort input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Style the indicator (dot/circle) */
+.sexsort .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}

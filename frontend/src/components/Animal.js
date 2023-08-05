@@ -18,7 +18,7 @@ const Animal = ({
     const comments = animal.comments || []
 
     return (
-        <div className='dog'>
+        <div className='animal'>
         <img src={animal.image} alt={`${animal.name}`}/>
         <h3>
             {animal.name + " "}

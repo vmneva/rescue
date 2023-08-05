@@ -10,7 +10,7 @@ const AnimalForm = ({
     const [animalData, setAnimalData] = useState({
         name: '',
         type: '',
-        dateOfBirth: '',
+        date_of_birth: '',
         sex: '',
         image: '',
         breed: '',
@@ -75,7 +75,7 @@ const AnimalForm = ({
         setAnimalData({
             name: '',
             type: '',
-            dateOfBirth: '',
+            date_of_birth: '',
             sex: '',
             image: '',
             breed: '',
@@ -86,6 +86,19 @@ const AnimalForm = ({
     return (
         <div className='AnimalForm'>
           <form onSubmit={addAnimal}>
+        <label>
+        <select id="type">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+        </select>
+      </label>
+      <label>
+        <select id="sex">
+            <option value="female">Female</option>
+            <option value="male">Male</option>
+        </select>
+      </label>  
+      <br/>    
       <label>
         Name:
         <input
@@ -101,36 +114,10 @@ const AnimalForm = ({
         <input
           type="text"
           name="dateOfBirth"
-          value={animalData.dateOfBirth}
+          value={animalData.date_of_birth}
           onChange={handleInputChange}
         />
       </label>
-      <br />
-      <label>
-        <select id="type">
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-        </select>
-      </label>
-      <label>
-        <select id="sex">
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-        </select>
-      </label>
-      <br />
-      <label>
-        Image:
-        <input
-          type="file"
-          accept=".jpg,.jpeg"
-          name="image"
-          onChange={handleImageUpload}
-        />
-      </label>
-      {animalData.image && (
-        <img src={animalData.image} alt="Animal Preview" style={{ width: '200px' }} />
-      )}
       <br />
       <label>
         Breed:
@@ -138,6 +125,16 @@ const AnimalForm = ({
           type="text"
           name="breed"
           value={animalData.breed}
+          onChange={handleInputChange}
+        />
+      </label>
+      <br />
+      <label>
+        Origin:
+        <input
+          type="text"
+          name="origin"
+          value={animalData.origin}
           onChange={handleInputChange}
         />
       </label>
@@ -151,15 +148,15 @@ const AnimalForm = ({
       </label>
       <br />
       <label>
-        Origin:
+        Image:
         <input
-          type="text"
-          name="origin"
-          value={animalData.origin}
-          onChange={handleInputChange}
+          type="file"
+          accept=".jpg,.jpeg"
+          name="image"
+          onChange={handleImageUpload}
         />
       </label>
-      <br />
+      <br/>
       <button type="submit">Add Animal</button>
     </form>
         </div> 
