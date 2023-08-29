@@ -15,21 +15,27 @@ const animalSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  breed: String,
   location: String,
-  origin: String, //from which country
-  favourite: Boolean,
+  origin: String, 
+  likes: Number,
   comments: [{
       content: String,
       username: String
     }
   ],
+  users: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  description: String
 })
 
 animalSchema.set('toJSON', {
     transform: (document, returnedObject) => {
-      returnedObject.id = returnedObject._id.toString()
-      delete returnedObject._id
+      if (returnedObject._id) {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+      }
       delete returnedObject.__v
     }
   })

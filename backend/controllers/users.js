@@ -4,8 +4,17 @@ const User = require('../models/user')
 
 usersRouter.get('/', async (request, response) => {
   const users = await User
-      .find({}).populate('animals', { name: 1, breed: 1} )
+      .find({})
   response.json(users)
+})
+
+usersRouter.get('/:id', async (request, response) => {
+  const user = await User.findById(request.params.id)
+  if (user) {
+      response.json(user)
+  } else {
+      response.status(404).end()
+  }
 })
 
 usersRouter.delete('/:id', async (request, response) => {
@@ -32,7 +41,7 @@ usersRouter.post('/', async (request, response) => {
     type,
   })
 
-  const savedUser = await user.save().then(user => user.populate('animals', { name: 1, breed: 1} ))
+  const savedUser = await user.save()
   response.status(201).json(savedUser)
 })
 
@@ -44,7 +53,7 @@ usersRouter.put('/:id', async (request, response) => {
       type: body.type || "client",
   }
 
-  const updatedUser = await User.findByIdAndUpdate(request.params.id, user, { new: true }).populate('animals', { name: 1, breed: 1} )
+  const updatedUser = await User.findByIdAndUpdate(request.params.id, user, { new: true })
   response.json(updatedUser)
 })
 

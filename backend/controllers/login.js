@@ -15,7 +15,6 @@ loginRouter.post('/', async (request, response) => {
       error: 'invalid username or password'
     })
   }
-  console.log("login.js tulostaa")
   console.log(user.type)
 
   const userForToken = {
@@ -26,7 +25,7 @@ loginRouter.post('/', async (request, response) => {
   const token = jwt.sign(userForToken, process.env.SECRET)
   response
     .status(200)
-    .send({ token, username: user.username, name: user.name, type: user.type })
+    .send({ token, username: user.username, name: user.name, type: user.type, id: user._id })
 })
 
 module.exports = loginRouter

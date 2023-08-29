@@ -1,197 +1,192 @@
-img {
-    width: 350px;
-    height: 400px;
-}
-.animals {
-    display: flex;
-    flex-wrap: wrap;
-}
-.animal {
-  color: white;
-  padding: 10px;
-  background: rgba(16, 18, 0, 0.29);
-  margin: 10px;
-  letter-spacing: 2px; 
+/* --------- MAINPAGE --------- */ 
+.mainpage, .mainpage:before, .mainpage:after{
+  font: 300 1em/1.5 'Merriweather', serif; color: #242424;
   box-sizing: border-box;
-  border-style: ridge;
-  max-width: 450px;
+  padding: 0; margin: 0;
+  background: white;
+}
+.mainpage {
+  width: 100%; 
+  margin: auto;
+  margin-bottom: 400px; /* Same height as footer */
+  padding: 100px 0;
 }
 
-.favourite {
+/* --------- LOGOUT --------- */
+.logout  {
+  font-weight: 600;
+  font-size: 18px;
+  color: black;
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  width: auto;
+}
+.logout button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 45px;
+  text-align:justify;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  position: absolute;
+  right: 0%;
+  top: 25px;
+  width: 110px;
+}
+.logout svg {
+  fill: #000000;
+  width: 30px;
+  height: 25px;
+  margin-right: auto;
+  border: none;
+  position: absolute;
+  top: 20%;
+}
+
+
+/* --------- BUTTONS --------- */
+.like {
   border: none;
   background-color: none;
   cursor: pointer;
   background-color: transparent;
 }
-.favourite svg {
-  fill: #ccc;
+.liked {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.like svg {
+  fill: white;
   width: 30px;
   height: 25px;
   margin-right: auto;
   border: none;
 }
-
-.favourite.active svg {
+.liked svg {
   fill: red;
   border: none;
   width: 30px;
   height: 25px;
 }
 
-.favouritebutton {
-  border: none;
-  background-color: none;
-  cursor: pointer;
+
+/* ---------  LOG IN AND SIGN UP ---------*/
+.header {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+.header h1{
+  color: black;
+  font-size: 40px;
+  font-weight: 900;
+  padding: 0 0 20px 0;
+  text-align: center;
+}
+.loginForm h2,
+.singupForm h2{
+  color: black;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+}
+.loginpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+.lItem {
   background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
 }
-.favouritebutton svg {
-  fill: #ccc;
-  width: 25px;
-  height: 20px;
-  margin-right: auto;
-  border: none;
+.loginImage img {
+  max-width: 100%;
+  height: auto;
 }
-
-.favouritebutton.active svg {
-  fill: red;
-  border: none;
-  width: 25px;
-  height: 20px;
+.loginForm,
+.signupForm {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+  margin: 0 auto;
 }
-
-.male {
+.loginForm h2,
+.signUpForm h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.loginForm input,
+.signupForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.login, .signup {
+  background-color: #fbeee0;
   border: none;
-  background-color: none;
+  border-radius: 20px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
   cursor: pointer;
-  background-color: white;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 25px;
+  width: 100%;
+  padding: 10px;
 }
-.male svg {
-  fill: #ccc;
-  width: 25px;
-  height: 20px;
-  margin-right: auto;
-  border: none;
+.loginForm button:hover,
+.signupForm button:hover {
+  background-color: #42280038;
 }
-
-.male.active svg {
-  fill: rgb(0, 78, 203);
+.loginForm .invisible,
+.signupForm .invisible {
+  background: none;
   border: none;
-  width: 25px;
-  height: 20px;
-}
-
-.female {
-  border: none;
-  background-color: none;
+  color: black;
   cursor: pointer;
-  background-color: white;
+  font-size: 20px;
+  margin-top: 10px;
 }
-.female svg {
-  fill: #ccc;
-  width: 25px;
-  height: 20px;
-  margin-right: auto;
-  border: none;
+.loginForm .invisible:hover,
+.signupForm .invisible:hover {
+  text-decoration: underline;
 }
 
-.female.active svg {
-  fill: #9f04aa;
-  border: none;
-  width: 25px;
-  height: 20px;
-}
-
-.login {
-  height:350px;
-  max-width:250px;
-  margin:40px auto;
-  border-radius:2px;
-  box-shadow:0px 2px 3px rgba(0, 0, 0, 0.2);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  animation: hi 0.5s;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background:#dcfbce;
-  border-style: dotted;
-  border-color: white;
-  padding: 12px 45px;
-}
-.signup {
-  min-height:350px;
-  max-width:250px;
-  margin:40px auto;
-  border-radius:2px;
-  box-shadow:0px 2px 3px rgba(0, 0, 0, 0.2);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background:#d7f8f8;
-  padding: 12px 45px;
-  border-style: dotted;
-  border-color: white;
-}
-.login button {
-	border-radius: 20px;
-	border: 1px solid #2ae96d;
-	background-color: #2ae96d;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	transition: transform 80ms ease-in;
-  cursor: pointer;
-}
-
-.login input {
-	background-color: #e6f5e0;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0px;
-	width: 100%;
-}
-
-.signup input {
-	background-color: #e0f4f5;
-	border: none;
-	padding: 12px 15px;
-	margin: 8px 0px;
-	width: 100%;
-}
-
-.signup button {
-	border-radius: 20px;
-	border: 1px solid #30e8eb;
-	background-color: #30e8eb;
-	color: #FFFFFF;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 12px 45px;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	transition: transform 80ms ease-in;
-  cursor: pointer;
-}
-.login p {
-  text-transform: uppercase;
-}
-
-/* Style inputs with type="text", select elements and textareas */
+/* --------- CONTACT FORM --------- */
 .contactinfo input[type=text], select, textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */ 
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  width: 100%; 
+  padding: 12px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  box-sizing: border-box; 
+  margin-top: 6px; 
+  margin-bottom: 16px; 
+  resize: vertical;
+  font-family: 'Montserrat', sans-serif;
 }
-
-/* Style the submit button with a specific background color etc */
 .contactinfo button[type=submit] {
   background-color: #04AA6D;
   color: white;
@@ -200,69 +195,475 @@ img {
   border-radius: 4px;
   cursor: pointer;
 }
-
-/* When moving the mouse over the submit button, add a darker green color */
 .contactinfo button[type=submit]:hover {
   background-color: #45a049;
 }
-
-/* Add a background color and some padding around the form */
 .contactinfo {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  width: 400px;
 }
 
-
-/* Customize the label (the container) */
-.sexsort {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+/* --------- ANIMAL FORM --------- */
+.AnimalForm {
+  width: 30%;
+  background-color: #e2d1ca;
+  padding: 15px;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 20px;
+}
+.AnimalForm input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px;
+  box-sizing: border-box; 
+  margin-top: 6px; 
+  margin-bottom: 16px; 
+  resize: vertical 
+}
+.AnimalForm button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 18px;
+  line-height: 35px;
+  width: 120px;
+  text-align: center;
+  position: relative; 
+  left: 160px; 
+  bottom: 30px;
+}
+.AnimalForm select {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 10px;
+  width: 50%;
+}
+.listbutton {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 18px;
+  line-height: 35px;
+  width: 200px;
+  text-align: center;
+  right: 1px;
+}
+.closebutton {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 18px;
+  line-height: 35px;
+  width: 200px;
+  text-align: center;
+  right: 1px;
+}
+.closebutton svg{
+  fill: red;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+.AnimalForm button:hover {
+  background-color: #fff;
+}
+.listbutton:hover {
+  background-color: #fff;
+}
+.commenticon {
+  fill: black;
+  width: 30px;
+  height: 30px;
+  margin-right: auto;
+  border: none;
+}
+
+/* --------- SORTING OPTIONS --------- */
+.sortForm {
+  background-color: #e2d1ca;
+  padding: 15px;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 20px;
+  width: 400px;
+}
+.sortForm select {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 10px;
+  width: 100%;
+}
+.sortForm h2 {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+}
+.male {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.male svg {
+  fill: #000000;
+  width: 30px;
+  height: 25px;
+  margin-right: auto;
+  border: none;
+}
+.female {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.female svg {
+  fill: #000000;
+  width: 30px;
+  height: 25px;
+  margin-right: auto;
+  border: none;
+}
+.sortings button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
-
-/* Hide the browser's default radio button */
-.sexsort input {
-  position: absolute;
-  opacity: 0;
+.all:hover {
+  background-color: #fff;
+}
+.dog:hover {
+  background-color: #fff;
+}
+.cat:hover {
+  background-color: #fff;
+}
+.sortings button.active {
+  background-color: #f9d8b4;
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+@media (min-width: 768px) {
+  .sortings button {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+.favouritebutton {
+  border: none;
   cursor: pointer;
-  height: 0;
-  width: 0;
+  background-color: transparent;
+}
+.favouritebutton svg {
+  fill: white;
+  width: 40px;
+  height: 40px;
+  margin-right: auto;
+  border: none;
 }
 
-/* Create a custom radio button */
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
+.favouritebutton.active svg {
+  fill: red;
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: none;
+}
+
+
+
+/* --------- ANIMAL PROFILE --------- */
+.animal img {
+  width: 350px;
+  height: 400px;
+}
+.animals {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.animal {
+  color: #422800;
+  padding: 10px;
+  background: #e2d1ca;
+  margin: 10px;
+  letter-spacing: 2px; 
+  box-sizing: border-box;
+  border-style: ridge;
+  max-width: 450px;
+  font-family: 'Montserrat', sans-serif;
+}
+.deleteAnimal {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.deleteAnimal svg {
+  fill: grey;
+  width: 30px;
+  height: 25px;
+  margin-right: auto;
+  border: none;
+}
+.deleteComment {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.deleteComment svg {
+  fill: gray;
   width: 20px;
-  background-color: #eee;
-  border-radius: 50%;
+  height: 20px;
+  margin-right: auto;
+  border: none;
 }
-
-/* On mouse-over, add a grey background color */
-.sexsort:hover input ~ .checkmark {
+.EditForm {
+  background-color: #e2d1ca;
+  padding: 15px;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 20px;
+}
+.EditForm select {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 10px;
+  width: 50%;
+}
+.EditForm button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 18px;
+  line-height: 35px;
+  width: 200px;
+  text-align: center;
+  right: 1px;
+}
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.tab button {
+  background-color: inherit;
+  color: 422800;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.tab button:hover {
+  background-color: #ddd;
+}
+.tab button.active {
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
-.sexsort input:checked ~ .checkmark {
-  background-color: #2196F3;
+
+/* --------- COMMENTS --------- */ 
+.comments {
+  list-style: none;
+  padding: 0;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+}
+.comment {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+.username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.comment-content {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+.comment-text {
+  margin: 0;
+}
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.commentsubmit {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 20px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 10px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.showcomments {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 20px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 10px;
+  line-height: 25px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.commentsubmit .showcomments :hover {
+  background-color: #fff;
 }
 
-/* Style the indicator (dot/circle) */
-.sexsort .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
+/* --------- FOOTER --------- */ 
+.container {
+  height: 250px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px;
+  position:center;
+}
+.contactForm {
+  background: #111;
+  color: #696969;
+}
+.footer {
+  color: rgba(128, 128, 128, 0.561);
+}
+footer p {
+  font-size: 13px;
+  font-family: 'Montserrat', sans-serif;
+  column-count: 2;
+    column-gap: 50px;
+}
+footer h4 {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 40px;
+  position: relative;
+}
+footer h4:after {
+  position: absolute;
+  content: "";
+  background: grey;
+  width: 12%;
+  height: 1px;
+  left: 0;
+  bottom: -20px;
+}
+.btn-footer {
+  color: grey;
+  text-decoration: none;
+  border: 1px solid;
+  border-radius: 45px;
+  font-size: 13px;
+  padding: 7px 30px;
+  line-height: 50px;
+}
+.btn-footer:hover {
+  text-decoration: none;
+}
+.social .facebook {
+  padding: 15px;
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
   border-radius: 50%;
-  background: white;
+  background: #3B5998;
+  color: white;
+}
+.social .instagram {
+  padding: 15px;
+  font-size: 20px;
+  width: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  background: #262626;
+  color: white;
 }

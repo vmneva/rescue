@@ -13,6 +13,8 @@ import animalService from './services/animals'
 import loginService from './services/login'
 import SignUpForm from './components/SignUpForm'
 import ContactForm from './components/ContactForm'
+import Footer from './components/Footer'
+import petImg from './pictures/pet-care.png'
 
 const App = () => {
   const [animals, setAnimals] = useState([])
@@ -32,6 +34,7 @@ const App = () => {
       })
   }, [])
 
+
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedRescueAppUser')
     if (loggedUserJSON) {
@@ -42,6 +45,7 @@ const App = () => {
   }, [])
 
   const animalFormRef = useRef()
+  const signupFormRef = useRef()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -68,16 +72,6 @@ const App = () => {
     setPassword('')
   }
 
-  const toggleFavourite = id => {
-    const animal = animals.find(a => a.id === id)
-    const changedAnimal = { ...animal, favourite: !animal.favourite }
-    animalService
-      .update(id, changedAnimal)
-      .then(returnedAnimal => {
-        setAnimals(animals.map(animal => animal.id !== id ? animal : returnedAnimal))
-      })
-  }
-
   const deleteAnimal = id => {
     const deletedAnimal = animals.find(a => a.id === id)
     if (window.confirm(`Delete "${deletedAnimal.name}"?`)) {
@@ -91,67 +85,73 @@ const App = () => {
         )
     }
   }
-
-
   return (
     <div>
       {!user &&
       <div>
-        <ErrorNotification message={errorMessage} />
         <Notification message={infoMessage} />
-        <SignUpForm 
-          users = {users} setUsers = {setUsers}
-          setErrorMessage = {setErrorMessage} setInfoMessage = {setInfoMessage}
+        <ErrorNotification message={errorMessage} />
+        <header className='header'>
+          <div className="loginpage">
+            <div className="lItem">
+              <div className="loginImage">
+                <h1>Eläinsuojelukeskus Tassula</h1>
+                <img src={petImg} width="300" style={{position: 'relative'}} alt="login"/>
+              </div>
+              <div>
+                <LoginForm
+                username = {username} password = {password} users={users}
+                handleLogin = {handleLogin}
+                handleUsernameChange={({ target }) => setUsername(target.value)}
+                handlePasswordChange={({ target }) => setPassword(target.value)}
+              />
+              </div>
+              <div>
+                <SignUpForm 
+                users = {users} setUsers = {setUsers}
+                setErrorMessage = {setErrorMessage} setInfoMessage = {setInfoMessage}
+              />
+              </div>
+            </div>
+          </div>
+       </header>
+       <div>
+       <ContactForm
+          setInfoMessage={setInfoMessage}
+          infoMessage={infoMessage}
         />
-        <LoginForm 
-          username = {username} password = {password} users={users}
-          handleLogin = {handleLogin}
-          handleUsernameChange={({ target }) => setUsername(target.value)}
-          handlePasswordChange={({ target }) => setPassword(target.value)}
-        />
+        </div>
       </div>
       }
       {user &&
-      <div>
-       {user.type==="admin" && <h1>Rescue ADMIN</h1> }
-       {user.type==="client" && <h1>Rescue Center</h1> }
+      <div className="mainpage">
       <LogoutForm 
         user = {user}
         handleLogout = {handleLogout}
         />
       {user.type==="admin" && 
       <div>
-        <Togglable buttonLabel="Add new animal" ref={animalFormRef}>
+        <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
           <AnimalForm 
             animals={animals} 
             setAnimals={setAnimals}
           />
         </Togglable>
+        <br></br>
       </div>
       }
       <Animals
         animals={animals} 
-        toggleFavourite={toggleFavourite} 
         deleteAnimal={deleteAnimal}
         setAnimals={setAnimals}
         user={user}
+        users={users}
+        setUsers={setUsers}
       />
-      {user.type==="client" &&
-        <ContactForm
-          setInfoMessage={setInfoMessage}
-          infoMessage={infoMessage}
-        />
-      }
       </div>
       }
-      <div className='contactinformation'>
-        <h3>RescueKeskus</h3>
-        <li>y-tunnus: 123456-7</li>
-        <li>asiakaspalvelu@rescuekeskus.com</li>
-        <li>02 456 122</li>
-      </div>
+      <Footer name = "Eläinsuojelukeskus Tassula"/>
   </div>
   )
 }
-
 export default App

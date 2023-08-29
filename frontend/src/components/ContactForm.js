@@ -12,7 +12,7 @@ const ContactForm = ({
     const addMessage = (event) => {
         event.preventDefault()
         const email = document.querySelector('#email').value
-        const infoMessage = `Thank you! We will contact you as soon as possible to ${email} :)`
+        const infoMessage = `Kiitos! Olemme mahdollisimman pian yhteydessä sähköpostiisi ${email} :)`
         setInfoMessage(infoMessage)
         setShowForm(false)
     }
@@ -21,33 +21,32 @@ const ContactForm = ({
         <div className='contactinfo'>
         {showForm ? (
         <form onSubmit={addMessage}>
-          <h2>Want to contact us?</h2>
-          <h3>Leave a message and we will be in touch!</h3>
+          <h2>Haluatko ottaa meihin yhteyttä?</h2>
           <label>
-            Your Name
+            Nimesi
           <input 
             type="text" 
             id="name" 
             name="name" 
-            placeholder="Your name.."/>
+            placeholder="Nimesi.."/>
             </label>
           <label>
-            Email
+            Sähköposti
           <input 
             type="text" 
             id="email" 
             name="email" 
-            placeholder="Your email.."/>
+            placeholder="Sähköpostisi.."/>
           </label>
           <label>
-            Subject
+            Terveiset
             <textarea 
               id="subject" 
               name="subject" 
-              placeholder="Write something.." >
+              placeholder="Kirjoita meille.." >
             </textarea>
           </label>
-          <button type="submit">Submit</button>
+          <button type="submit">Lähetä</button>
           </form>
         ) : (
           <div>

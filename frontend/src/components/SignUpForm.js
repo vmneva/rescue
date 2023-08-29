@@ -1,5 +1,6 @@
 import { useState } from 'react' 
 import userService from '../services/users'
+import { ReactComponent as InvisibleIcon } from '../icons/invisible.svg'
 
 const SignUpForm = ({
     users,
@@ -25,18 +26,19 @@ const SignUpForm = ({
     const addUser = async (event) => {
         event.preventDefault()
         const type = "client"
+        const animals = []
         try {
           const newUser = await userService.create({
-            name, username, password, type
+            name, username, password, type, animals
           })
-          setInfoMessage('New user registered! Please log in')
+          setInfoMessage('Uusi käyttäjä luotu. Kirjaudu sisään!')
           setTimeout(() => {
           setInfoMessage(null)
           }, 3000)
           setUsers(users.concat(newUser))
         }
         catch (exception) {
-          setErrorMessage('Username already taken!')
+          setErrorMessage('Käyttäjänimi varattu!')
           setTimeout(() => {
           setErrorMessage(null)
         }, 3000)
@@ -56,15 +58,15 @@ const SignUpForm = ({
     }
 
   return (
-      <div className='signup'>
-        <h2>Create account</h2>
-        <form>
+      <div className='signupForm'>
+        <h2>Uusi täällä? Rekisteröidy!</h2>
+        <form >
           <div>
             <input
               type="text"
               value={name}
               onChange={handleNameAdd}
-              placeholder='your name'
+              placeholder='nimi'
             />
           </div>
           <div>
@@ -72,7 +74,7 @@ const SignUpForm = ({
               type="text"
               value={username}
               onChange={handleUsernameAdd}
-              placeholder='username'
+              placeholder='käyttäjänimi'
             />
           </div>
           <div>
@@ -81,13 +83,13 @@ const SignUpForm = ({
               type="password"
               value={password}
               onChange={handlePasswordAdd}
-              placeholder='password'
+              placeholder='salasana'
             />
-            <input type="checkbox" onClick={togglePassword}/>Show Password
             <br></br>
-            <button onClick={addUser}>sign up</button> 
+            <button onClick={addUser} className='signup'>rekisteröidy</button> 
           </div>
           </form>
+          <button onClick={togglePassword} className='invisible'> <InvisibleIcon /></button> 
               
       </div>
     )

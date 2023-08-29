@@ -1,4 +1,7 @@
+import '../index.css'
 import animalService from '../services/animals'
+
+import { ReactComponent as DeleteIcon } from '../icons/delete.svg'
 
 const Comment = ({ 
     comment,
@@ -9,12 +12,14 @@ const Comment = ({
  }) => {
 
   const comments = animal.comments || []
-  const commentId = comment._id
+  const commentId = comment._id 
 
   const handleDeleteComment = event => {
     event.preventDefault()
+    const likedUsers = animal.users.map(user => user.id)
     const updatedAnimal = {
       ...animal,
+      users: likedUsers,
       comments: comments.filter(deletedComment => deletedComment._id !== commentId),
     }
     deleteComment(updatedAnimal)
@@ -33,13 +38,16 @@ const Comment = ({
   }
   
   return (
-    <div className='comment'>
-        <p>
-          {comment.content} - {comment.username}
+    <div>
+      <li className='comment'>
+        <div className="comment-content">
+          <p className = "username">{comment.username} </p>
+          <p className='comment-text'>{comment.content} </p>
           {(user.type === "admin" || comment.username === user.username) &&
-          <button onClick={handleDeleteComment}>delete</button> 
+          <button className="deleteComment" onClick={handleDeleteComment}><DeleteIcon/></button> 
           }
-        </p>
+        </div>
+      </li>
     </div>
   )
 }

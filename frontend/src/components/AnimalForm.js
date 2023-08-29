@@ -6,17 +6,17 @@ const AnimalForm = ({
       animals,
       setAnimals,
     }) => {
-
+    
     const [animalData, setAnimalData] = useState({
         name: '',
         type: '',
         date_of_birth: '',
         sex: '',
         image: '',
-        breed: '',
         location: '',
         origin: '',
-        })
+        description: '',
+      })
 
     const handleInputChange = (event) => {
         const { name, value } = event.target
@@ -34,7 +34,7 @@ const AnimalForm = ({
             reader.onloadend = () => {
               setAnimalData((prevData) => ({
                 ...prevData,
-                image: reader.result, // Store the Base64 string representation in the state
+                image: reader.result, 
               }));
             };
             reader.readAsDataURL(file);
@@ -49,6 +49,7 @@ const AnimalForm = ({
         const selectedSex = document.querySelector('#sex')
         const selectedLocation = document.querySelector('#location')
         const selectedType = document.querySelector('#type')
+        const description = document.querySelector('#description').value
         const sex = selectedSex.options[selectedSex.selectedIndex].value
         const location = selectedLocation.options[selectedLocation.selectedIndex].value
         const type = selectedType.options[selectedType.selectedIndex].value
@@ -59,11 +60,11 @@ const AnimalForm = ({
             date_of_birth: animalData.date_of_birth,
             sex: sex,
             image: animalData.image,
-            breed: animalData.breed,
             location: location,
             origin: animalData.origin, 
-            favourite: false,
+            likes: 0,
             comments: [],
+            description: description
         })
     }
     const createAnimal = (animalObject) => {
@@ -78,29 +79,29 @@ const AnimalForm = ({
             date_of_birth: '',
             sex: '',
             image: '',
-            breed: '',
             location: '',
             origin: '',
+            description: '',
             })
     }
     return (
-        <div className='AnimalForm'>
-          <form onSubmit={addAnimal}>
+      <div className='AnimalForm'>
+        <form onSubmit={addAnimal}>
         <label>
         <select id="type">
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
+            <option value="dog">Koira</option>
+            <option value="cat">Kissa</option>
         </select>
       </label>
       <label>
         <select id="sex">
-            <option value="female">Female</option>
-            <option value="male">Male</option>
+            <option value="female">Narttu</option>
+            <option value="male">Uros</option>
         </select>
       </label>  
       <br/>    
       <label>
-        Name:
+        Nimi
         <input
           type="text"
           name="name"
@@ -110,27 +111,18 @@ const AnimalForm = ({
       </label>
       <br />
       <label>
-        Date of Birth:
+        Arvio syntymäajasta
         <input
           type="text"
-          name="dateOfBirth"
+          name="date_of_birth"
           value={animalData.date_of_birth}
           onChange={handleInputChange}
+          placeholder='pp.kk.vvvv'
         />
       </label>
       <br />
       <label>
-        Breed:
-        <input
-          type="text"
-          name="breed"
-          value={animalData.breed}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Origin:
+        Alkuperämaa
         <input
           type="text"
           name="origin"
@@ -140,15 +132,23 @@ const AnimalForm = ({
       </label>
       <br />
       <label>
-        Location:
         <select id="location">
             <option value="Helsinki">Helsinki</option>
             <option value="Oulu">Oulu</option>
         </select>
       </label>
-      <br />
+      <br/>
       <label>
-        Image:
+        Kuvateksti
+            <textarea 
+              id="description" 
+              name="description" 
+              placeholder="Pieni kuvaus eläimestä..." >
+            </textarea>
+          </label>
+      <label>
+        Kuva
+        <br></br>
         <input
           type="file"
           accept=".jpg,.jpeg"
@@ -156,8 +156,7 @@ const AnimalForm = ({
           onChange={handleImageUpload}
         />
       </label>
-      <br/>
-      <button type="submit">Add Animal</button>
+      <button type="submit">Lisää eläin</button>
     </form>
         </div> 
     )

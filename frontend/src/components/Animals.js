@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import '../index.css'
 import Animal from './Animal'
-import { ReactComponent as HeartIcon } from '../icons/heart.svg'
 import { ReactComponent as MaleIcon } from '../icons/male.svg'
 import { ReactComponent as FemaleIcon } from '../icons/female.svg'
+import { ReactComponent as HeartIcon } from '../icons/heart.svg'
 
 const Animals = ({ 
       animals,
@@ -17,11 +17,14 @@ const Animals = ({
     const [showType, setShowType] = useState('all')
     const [showLocation, setShowLocation] = useState('all')
     const [showSex, setShowSex] = useState('all')
+    const [activeSexSort, setActiveSexSort] = useState(null)
     const [sortBy, setSortBy] = useState('date')
+    const [activeSortBy, setActiveSortBy] = useState(null)
+  
     let animalsToShow = [...animals]
    
     if (!showAll) {
-        animalsToShow = animalsToShow.filter(animal => animal.favourite)
+        animalsToShow = animalsToShow.filter(animal => animal.users.some(u => u.id === user.id))
     }
     if (showType !== 'all') {
         animalsToShow = animalsToShow.filter(animal => animal.type === showType)
@@ -33,22 +36,29 @@ const Animals = ({
       animalsToShow = animalsToShow.filter(animal => animal.sex === showSex)
     }
 
+    const handleSexSortClick = (sex) => {
+      if (activeSexSort === sex) {
+        setActiveSexSort(null)
+        setShowSex('all')
+      } else {
+        setActiveSexSort(sex)
+        setShowSex(sex)
+      }
+    }
+
     const handleLocationChange = (event) => {
       setShowLocation(event.target.value)
     }
 
     const handleSortByClick = (sortCriteria) => {
-      setSortBy(sortCriteria)
+      if (activeSortBy === sortCriteria) {
+        setActiveSortBy(null)
+        setSortBy('date')
+      } else {
+        setActiveSortBy(sortCriteria)
+        setSortBy(sortCriteria)
+      }
     }
-
-    const handleReset = () => {
-      setShowAll(true)
-      setShowType('all')
-      setShowLocation('all')
-      setSortBy('date')
-      setShowSex('all')
-    }
-
     const sortingFunctions = {
       youngest: (a, b) => {
         const dateA = new Date(a.date_of_birth.split('.').reverse().join('-'))
@@ -59,36 +69,44 @@ const Animals = ({
         const dateA = new Date(a.date_of_birth.split('.').reverse().join('-'))
         const dateB = new Date(b.date_of_birth.split('.').reverse().join('-'))
         return dateA - dateB
-      },
-      name: (a, b) => a.name.localeCompare(b.name),
+      }
     }
 
     animalsToShow.sort(sortingFunctions[sortBy])
 
-    return (
-      <div className='animals'>
-        <div>
-          <button onClick={() => (setShowType("all") && setShowSex("all"))}>All</button>
-          <button onClick={() => setShowType('dog')}>Dogs</button>
-          <button onClick={() => setShowType('cat')}>Cats</button>
-          <br></br>
-          <button onClick={() => setShowSex('male')} className={`male ${showSex==="male" ? 'active' : ''}`} ><MaleIcon/></button>
-          <button onClick={() => setShowSex('female')} className={`female ${showSex==="female" ? 'active' : ''}`}><FemaleIcon/></button>
-          <br></br>
-          <button onClick={() => handleSortByClick('youngest')}>From youngest</button>
-          <button onClick={() => handleSortByClick('oldest')}>From oldest</button>
+    /*
+    <button onClick={() => setShowType('all')} className={`all ${showType==="all" ? 'active' : ''}`} >All</button>
+    <button onClick={() => setShowType('dog')} className={`dog ${showType==="dog" ? 'active' : ''}`} >Dogs</button>
+    <button onClick={() => setShowType('cat')} className={`cat ${showType==="cat" ? 'active' : ''}`} >Cats</button>
+    */
 
-        <select value={showLocation} onChange={handleLocationChange}>
-            <option value="all">Koko Suomi</option>
-            <option value="Helsinki">Helsinki</option>
-            <option value="Oulu">Oulu</option>
-        </select>
+    return (
+      <div>
+        <div className="tab">
+          <button onClick={() => setShowType('all')} className="tablinks">Kaikki karvakamut</button>
+          <button onClick={() => setShowType('dog')} className="tablinks">Koirat</button>
+          <button onClick={() => setShowType('cat')} className="tablinks">Kissat</button>
+        </div>
+        <div className='sortForm'>
+          <div className="sortings">
+            <button onClick={() => handleSexSortClick('male')} className={`male ${activeSexSort === "male" ? 'active' : ''}`} ><MaleIcon/></button>
+            <button onClick={() => handleSexSortClick('female')} className={`female ${activeSexSort === "female" ? 'active' : ''}`}><FemaleIcon/></button>
+              <br></br>
+              <button onClick={() => handleSortByClick('youngest')} className={`youngest ${sortBy==="youngest" ? 'active' : ''}`} >Nuorimmasta vanhimpaan</button>
+              <button onClick={() => handleSortByClick('oldest')} className={`oldest ${sortBy==="oldest" ? 'active' : ''}`} >Vanhimmasta nuorimpaan</button>
+              <br></br>
+              <select value={showLocation} onChange={handleLocationChange}>
+                  <option value="all">Koko Suomi</option>
+                  <option value="Helsinki">Helsinki</option>
+                  <option value="Oulu">Oulu</option>
+              </select>
+          </div>
           <button onClick={() => setShowAll(!showAll)} className={`favouritebutton ${!showAll ? 'active' : ''}`}>
             <HeartIcon />
           </button>
-          <button onClick={handleReset}>Clear sorting</button>
         </div>
-        <br />
+
+        <div className='animals'>
         {animalsToShow.map(animal => 
         <Animal 
           key={animal.id} 
@@ -99,6 +117,7 @@ const Animals = ({
           deleteAnimal={() => deleteAnimal(animal.id)}
           toggleFavourite={() => toggleFavourite(animal.id)}  />
         )}
+        </div>
       </div>
     )
   }

@@ -1,3 +1,5 @@
+import { ReactComponent as InvisibleIcon } from '../icons/invisible.svg'
+
 const LoginForm = ({
     handleLogin,
     handleUsernameChange,
@@ -16,15 +18,15 @@ const LoginForm = ({
   }
 
   return (
-      <div className='login'>
-        <h2>Log in</h2>
+      <div className='loginForm'>
+        <h2>Hauska nähdä sinua taas!</h2>
         <form onSubmit={handleLogin}>
           <div>
             <input
               type="text"
               value={username}
               onChange={handleUsernameChange}
-              placeholder='username'
+              placeholder='käyttäjänimi'
             />
           </div>
           <div>
@@ -33,16 +35,15 @@ const LoginForm = ({
               type="password"
               value={password}
               onChange={handlePasswordChange}
-              placeholder='password'
+              placeholder='salasana'
             />
-            <p>
-            <input type="checkbox" onClick={togglePassword}/>
-              Show Password
-            </p>
             <br></br>
-            <button type="submit">login</button>
           </div>
-          </form>      
+          <button type="submit" className="login">kirjaudu</button>
+          </form>    
+          <button onClick={togglePassword} className='invisible'>
+              <InvisibleIcon />
+            </button>
       </div>
     )
 }

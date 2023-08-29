@@ -6,7 +6,7 @@ const CommentForm = ({
       animal,
       animals,
       setAnimals,
-      user 
+      user
     }) => {
 
   const [newComment, setNewComment] = useState('')
@@ -21,7 +21,10 @@ const CommentForm = ({
         content: newComment,
         username: user.username
       }
-      addComment({...animal, comments: [...comments, commentObject]})
+
+      const likedUsers = animal.users.map(user => user.id)
+
+      addComment({...animal, users: likedUsers, comments: [...comments, commentObject]})
       setNewComment('')
   }
   
@@ -33,7 +36,7 @@ const CommentForm = ({
         setAnimals(animals.map(animal => animal.id !== id ? animal : returnedAnimal))
       })
       .catch(error => {
-        console.error('Error saving comment:', error)
+        console.error('Virhe kommentin lisäyksessä:', error)
       })
   }
 
@@ -42,9 +45,9 @@ const CommentForm = ({
       <textarea
         value={newComment}
         onChange={handleInputChange}
-        placeholder="Write a comment..."
+        placeholder="Kommentoi..."
       />
-      <button onClick={handleCommentSubmit}>Submit</button>
+      <button className="commentsubmit" onClick={handleCommentSubmit}>Julkaise</button>
     </div>
   )
 }
