@@ -1,6 +1,7 @@
 import '../index.css'
 import { useState } from 'react' 
 import animalService from '../services/animals'
+import Notification from './Notification'
 
 const EditForm = ({
       animal,
@@ -11,6 +12,7 @@ const EditForm = ({
     const [updatedImage, setUpdatedImage] = useState(animal.image)
     const [updatedDescription, setUpdatedDescription] = useState(animal.description)
     const [updatedLocation, setUpdatedLocation] = useState(animal.location)
+    const [infoMessage, setInfoMessage] = useState(null)
 
     const handleInputChange = (event) => {
       setUpdatedDescription(event.target.value)
@@ -23,22 +25,20 @@ const EditForm = ({
         const file = event.target.files[0]
         if (file) {
           if (file.type === 'image/jpeg') {
-            const reader = new FileReader();
+            const reader = new FileReader()
             reader.onloadend = () => {
               setUpdatedImage(reader.result)
             }
             reader.readAsDataURL(file)
           } else {
-            alert('Please upload a JPEG image.');
+            alert('Lataa JPEG kuva.');
           }
         }
       }
 
     const handleUpdating = (event) => {
         event.preventDefault()
-
         const likedUsers = animal.users.map(user => user.id)
-
         updateAnimal({
             ...animal,
             image: updatedImage,
@@ -57,9 +57,14 @@ const EditForm = ({
           .catch(error => {
             console.error('Error updating animal:', error)
           })
+          setInfoMessage("Profiili päivitetty!")
+          setTimeout(() => {
+            setInfoMessage(null)
+          }, 3000)
     }
     return (
       <div className='EditForm'>
+        <Notification className="contactnotification" message={infoMessage} />
         <form onSubmit={handleUpdating}>
         <label>
           <select value={updatedLocation} onChange={handleLocationChange}>
@@ -86,7 +91,7 @@ const EditForm = ({
           onChange={handleImageUpload}
         />
       </label>
-      <button type="submit">Tallenna muutokset</button>
+      <button className="editbutton" type="submit">Tallenna muutokset</button>
     </form>
         </div> 
     )

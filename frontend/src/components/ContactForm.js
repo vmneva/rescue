@@ -1,29 +1,36 @@
 import '../index.css'
 import { useState } from 'react'
 import Notification from './Notification'
+import contactImg from '../pictures/operator.png'
 
-const ContactForm = ({
-    setInfoMessage, 
-    infoMessage
-    }) => {
+const ContactForm = () => {
 
-    const [showForm, setShowForm] = useState(true)
+    const [showForm, setShowForm] = useState(false)
+    const [infoMessage, setInfoMessage] = useState(null)
+
+    const handleClick = () => {
+      setShowForm(!showForm)
+    }
 
     const addMessage = (event) => {
         event.preventDefault()
         const email = document.querySelector('#email').value
-        const infoMessage = `Kiitos! Olemme mahdollisimman pian yhteydessä sähköpostiisi ${email} :)`
+        const infoMessage = `Kiitos! Olemme mahdollisimman pian yhteydessä sähköpostiisi ${email}!`
         setInfoMessage(infoMessage)
+        setTimeout(() => {
+          setInfoMessage(null)
+        }, 3000)
         setShowForm(false)
     }
 
     return (
-        <div className='contactinfo'>
+      <div className='contactinfo'>
+        {showForm && (<button className="closecontact" onClick={handleClick}>Sulje</button>) }
+        {!showForm && (<button className="contactbutton" onClick={handleClick}>Ota yhteyttä?</button>) }        
+        <img src={contactImg} alt="contact"/>
         {showForm ? (
         <form onSubmit={addMessage}>
-          <h2>Haluatko ottaa meihin yhteyttä?</h2>
           <label>
-            Nimesi
           <input 
             type="text" 
             id="name" 
@@ -31,7 +38,6 @@ const ContactForm = ({
             placeholder="Nimesi.."/>
             </label>
           <label>
-            Sähköposti
           <input 
             type="text" 
             id="email" 
@@ -39,21 +45,22 @@ const ContactForm = ({
             placeholder="Sähköpostisi.."/>
           </label>
           <label>
-            Terveiset
             <textarea 
+              type="text"
               id="subject" 
               name="subject" 
               placeholder="Kirjoita meille.." >
             </textarea>
           </label>
+          <br></br>
           <button type="submit">Lähetä</button>
           </form>
         ) : (
           <div>
-            <Notification message={infoMessage} />
+            <Notification className="contactnotification" message={infoMessage} />
           </div>
         )}
-        </div>
+      </div>
     )
 }
 

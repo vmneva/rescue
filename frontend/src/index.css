@@ -1,15 +1,50 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 /* --------- MAINPAGE --------- */ 
 .mainpage, .mainpage:before, .mainpage:after{
-  font: 300 1em/1.5 'Merriweather', serif; color: #242424;
+  font: 300 1em/1.5 'Merriweather', serif; 
+  color: #242424;
   box-sizing: border-box;
   padding: 0; margin: 0;
-  background: white;
+  background: #f5f5f5;
 }
 .mainpage {
-  width: 100%; 
   margin: auto;
-  margin-bottom: 400px; /* Same height as footer */
   padding: 100px 0;
+}
+
+/* --------- NOTIFICATIONS --------- */
+.notification {
+  border-style: none;
+  display: block;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 10px;
+  font-size: 0.8125rem;
+  color: white;
+  box-shadow: 0px 1px 5px 0 darkslategrey;
+  background-color: #43ac6a;
+  text-align: center;
+  font-size: 15px;
+}
+.errornotification {
+  border-style: none;
+  display: block;
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+  padding: 10px;
+  font-size: 0.8125rem;
+  color: white;
+  box-shadow: 0px 1px 5px 0 darkslategrey;
+  background-color: #ac5343;
+  text-align: center;
+  font-size: 15px;
+}
+.contactnotification {
+
 }
 
 /* --------- LOGOUT --------- */
@@ -82,11 +117,11 @@
   height: 25px;
 }
 
-
 /* ---------  LOG IN AND SIGN UP ---------*/
 .header {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  height: 100%;
 }
 .header h1{
   color: black;
@@ -106,25 +141,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  padding-top: 200px;
+  padding-bottom: 250px;
   background-color: #f5f5f5;
+}
+.forms {
+  display: flex;
+  align-items: center;
 }
 .lItem {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: 400px;
-}
-.loginImage img {
-  max-width: 100%;
-  height: auto;
+  padding: 30px;
+  width: 600px;
 }
 .loginForm,
 .signupForm {
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   width: 300px;
   margin: 0 auto;
@@ -157,12 +192,14 @@
   width: 100%;
   padding: 10px;
 }
-.loginForm button:hover,
-.signupForm button:hover {
+.login:hover,
+.signup:hover {
   background-color: #42280038;
 }
 .loginForm .invisible,
-.signupForm .invisible {
+.signupForm .invisible,
+.loginForm .visible,
+.signupForm .visible {
   background: none;
   border: none;
   color: black;
@@ -171,12 +208,22 @@
   margin-top: 10px;
 }
 .loginForm .invisible:hover,
-.signupForm .invisible:hover {
+.signupForm .invisible:hover,
+.signupForm .visible:hover,
+.signupForm .visible:hover {
   text-decoration: underline;
 }
 
 /* --------- CONTACT FORM --------- */
-.contactinfo input[type=text], select, textarea {
+.contactform {
+  background-color: transparent;
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  top: 2%;
+  right: 1%;
+}
+.contactinfo input[type=text], 
+.contactinfo textarea {
   width: 100%; 
   padding: 12px; 
   border: 1px solid #ccc; 
@@ -194,16 +241,49 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  position: absolute;
+  right: 1%;
 }
 .contactinfo button[type=submit]:hover {
   background-color: #45a049;
 }
 .contactinfo {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  font-family: 'Montserrat', sans-serif;
-  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  text-align: center;
+  padding: 10px;
+}
+.contactinfo img {
+  width: 100px;
+  border-radius: 50%;
+  padding: 10px;
+}
+.contactbutton {
+  background-color: #0491aa;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.contactbutton:hover {
+  background-color: #03798d;
+}
+.closecontact {
+  background-color: #aa3004;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  right: 13%;
+  top: 96%;
+}
+.closecontact:hover {
+  background-color: #8d2a06;
 }
 
 /* --------- ANIMAL FORM --------- */
@@ -214,6 +294,7 @@
   font-weight: 600;
   font-size: 18px;
   border-radius: 20px;
+  display: grid;
 }
 .AnimalForm input[type=text], select, textarea {
   width: 100%;
@@ -300,6 +381,11 @@
   margin-right: auto;
   border: none;
 }
+.commentbutton {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
 
 /* --------- SORTING OPTIONS --------- */
 .sortForm {
@@ -366,19 +452,13 @@
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-.all:hover {
-  background-color: #fff;
-}
-.dog:hover {
-  background-color: #fff;
-}
-.cat:hover {
-  background-color: #fff;
-}
 .sortings button.active {
   background-color: #f9d8b4;
   box-shadow: #422800 2px 2px 0 0;
   transform: translate(2px, 2px);
+}
+.sortings button:hover {
+  background-color: #fff;
 }
 @media (min-width: 768px) {
   .sortings button {
@@ -398,7 +478,6 @@
   margin-right: auto;
   border: none;
 }
-
 .favouritebutton.active svg {
   fill: red;
   border: none;
@@ -410,39 +489,68 @@
 
 
 /* --------- ANIMAL PROFILE --------- */
-.animal img {
+#animalImg {
   width: 350px;
   height: 400px;
+  box-shadow:
+    -50px -50px 0 -40px tomato,
+    50px 50px 0 -40px tomato;
+}
+.animalName {
+  font-weight: 900;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
 }
 .animals {
   display: flex;
   flex-wrap: wrap;
   height: 100%;
 }
-
+.animal-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  margin-bottom: 10px; 
+  margin-top: 20px;
+}
 .animal {
   color: #422800;
+  position: relative;
   padding: 10px;
   background: #e2d1ca;
   margin: 10px;
   letter-spacing: 2px; 
   box-sizing: border-box;
-  border-style: ridge;
+  border-style: none;
+  border-radius: 30px;
   max-width: 450px;
   font-family: 'Montserrat', sans-serif;
 }
-.deleteAnimal {
+.animal .deleteAnimal {
+  background-color: #c93a07;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  display: inline-block;
+  padding: 0 18px;
+  font-size: 15px;
+  padding: 12px 20px;
   border: none;
-  background-color: none;
+  border-radius: 4px;
+  line-height: 10px;
+  text-align: center;
   cursor: pointer;
-  background-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
-.deleteAnimal svg {
-  fill: grey;
-  width: 30px;
-  height: 25px;
-  margin-right: auto;
-  border: none;
+.profileInfo {
+  background-color: #fbeee0;
+  padding-left: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  text-align: left;
+  font-weight: 900;
 }
 .deleteComment {
   border: none;
@@ -451,18 +559,16 @@
   background-color: transparent;
 }
 .deleteComment svg {
-  fill: gray;
-  width: 20px;
-  height: 20px;
+  fill: grey;
+  width: 30px;
+  height: 25px;
   margin-right: auto;
   border: none;
 }
 .EditForm {
-  background-color: #e2d1ca;
   padding: 15px;
   font-weight: 600;
   font-size: 18px;
-  border-radius: 20px;
 }
 .EditForm select {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -471,7 +577,7 @@
   border-radius: 10px;
   width: 50%;
 }
-.EditForm button {
+.editbutton {
   background-color: #fbeee0;
   border: 2px solid #422800;
   border-radius: 30px;
@@ -482,10 +588,54 @@
   font-weight: 600;
   font-size: 15px;
   padding: 0 18px;
-  line-height: 35px;
+  line-height: 30px;
   width: 200px;
   text-align: center;
   right: 1px;
+}
+.editWindow {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Ensure it's above other elements */
+}
+.editWindow .close {
+  background-color: #c93a07;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.editWindow .close:hover,
+.deleteAnimal:hover {
+  background-color: #8d2a06;
+}
+.editContent{
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.editbutton:hover,
+.showcomments:hover,
+.commentsubmit:hover {
+  background-color: #fff;
 }
 .tab {
   overflow: hidden;
@@ -530,7 +680,7 @@
   margin-bottom: 5px;
 }
 .comment-content {
-  flex: 1;
+  flex:content;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -539,45 +689,7 @@
 .comment-text {
   margin: 0;
 }
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-}
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-.commentsubmit {
-  background-color: #fbeee0;
-  border: 2px solid #422800;
-  border-radius: 20px;
-  box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 0 10px;
-  line-height: 40px;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+.commentsubmit,
 .showcomments {
   background-color: #fbeee0;
   border: 2px solid #422800;
@@ -589,66 +701,49 @@
   font-weight: 600;
   font-size: 15px;
   padding: 0 10px;
-  line-height: 25px;
+  line-height: 30px;
   text-align: center;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-.commentsubmit .showcomments :hover {
-  background-color: #fff;
-}
 
 /* --------- FOOTER --------- */ 
 .container {
   height: 250px;
-  font-weight: 600;
-  font-size: 18px;
+  font-size: 25px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  right: 1%;
+  background-color: #333; /* Adjust this to your footer's background color */
+  color: #ffffffb6; 
   padding: 10px;
-  position:center;
-}
-.contactForm {
-  background: #111;
-  color: #696969;
+  font-family: 'Montserrat', sans-serif;
 }
 .footer {
   color: rgba(128, 128, 128, 0.561);
+  
 }
 footer p {
   font-size: 13px;
   font-family: 'Montserrat', sans-serif;
   column-count: 2;
-    column-gap: 50px;
+  column-gap: 10px;
 }
 footer h4 {
   font-family: 'Montserrat', sans-serif;
   margin-bottom: 40px;
   position: relative;
 }
-footer h4:after {
-  position: absolute;
-  content: "";
-  background: grey;
-  width: 12%;
-  height: 1px;
-  left: 0;
-  bottom: -20px;
-}
-.btn-footer {
-  color: grey;
-  text-decoration: none;
-  border: 1px solid;
-  border-radius: 45px;
-  font-size: 13px;
-  padding: 7px 30px;
-  line-height: 50px;
-}
-.btn-footer:hover {
-  text-decoration: none;
+.social {
+  padding-top: 10px;
 }
 .social .facebook {
-  padding: 15px;
+  padding: 20px;
   font-size: 20px;
   width: 20px;
   text-align: center;
@@ -658,7 +753,7 @@ footer h4:after {
   color: white;
 }
 .social .instagram {
-  padding: 15px;
+  padding: 20px;
   font-size: 20px;
   width: 20px;
   text-align: center;

@@ -1,6 +1,7 @@
 import { useState } from 'react' 
 import userService from '../services/users'
 import { ReactComponent as InvisibleIcon } from '../icons/invisible.svg'
+import { ReactComponent as VisibleIcon } from '../icons/visible.svg'
 
 const SignUpForm = ({
     users,
@@ -12,6 +13,7 @@ const SignUpForm = ({
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [isVisible, setIsVisible] = useState(false)
 
     const handleNameAdd = (event) => {
         setName(event.target.value)
@@ -55,6 +57,7 @@ const SignUpForm = ({
       } else {
         input.type = "password";
       }
+      setIsVisible(!isVisible)
     }
 
   return (
@@ -89,7 +92,16 @@ const SignUpForm = ({
             <button onClick={addUser} className='signup'>rekisteröidy</button> 
           </div>
           </form>
-          <button onClick={togglePassword} className='invisible'> <InvisibleIcon /></button> 
+          {!isVisible && 
+            <button onClick={togglePassword} className='invisible'>
+              <InvisibleIcon />
+          </button>
+          }
+          {isVisible && 
+          <button onClick={togglePassword} className='visible'>
+              <VisibleIcon />
+          </button>
+          }
               
       </div>
     )

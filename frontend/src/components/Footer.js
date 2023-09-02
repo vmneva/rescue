@@ -5,9 +5,9 @@ import { ReactComponent as InstagramIcon } from '../icons/instagram.svg'
 const Footer = ({ name }) => {
 
 return (
-    <footer className="contactForm">
+    <footer>
     <div className="container">
-        <div className="row">
+        <div>
             <h4> {name} </h4>
             <p>
                 Läntinen Pitkäkatu 12 A<br></br>20101 TURKU

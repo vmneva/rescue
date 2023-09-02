@@ -41,11 +41,12 @@ const Comment = ({
     <div>
       <li className='comment'>
         <div className="comment-content">
-          <p className = "username">{comment.username} </p>
-          <p className='comment-text'>{comment.content} </p>
+          <p className = "username">{comment.username}
           {(user.type === "admin" || comment.username === user.username) &&
           <button className="deleteComment" onClick={handleDeleteComment}><DeleteIcon/></button> 
           }
+          </p>
+          <p className='comment-text'>{comment.content} </p>
         </div>
       </li>
     </div>

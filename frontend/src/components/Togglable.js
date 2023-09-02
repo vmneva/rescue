@@ -1,6 +1,6 @@
 import { useState, useImperativeHandle, forwardRef } from 'react'
 import '../index.css'
-import { ReactComponent as CloseIcon } from '../icons/close.svg'
+
 
 const Togglable = forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false)

@@ -1,4 +1,6 @@
+import {   useState } from 'react'
 import { ReactComponent as InvisibleIcon } from '../icons/invisible.svg'
+import { ReactComponent as VisibleIcon } from '../icons/visible.svg'
 
 const LoginForm = ({
     handleLogin,
@@ -8,6 +10,8 @@ const LoginForm = ({
     password,
 }) => {
 
+  const [isVisible, setIsVisible] = useState(false)
+
   const togglePassword = () => {
     let input = document.getElementById("salasana1");
     if (input.type === "password") {
@@ -15,6 +19,7 @@ const LoginForm = ({
     } else {
       input.type = "password";
     }
+    setIsVisible(!isVisible)
   }
 
   return (
@@ -40,10 +45,17 @@ const LoginForm = ({
             <br></br>
           </div>
           <button type="submit" className="login">kirjaudu</button>
-          </form>    
-          <button onClick={togglePassword} className='invisible'>
+          </form>   
+          {!isVisible && 
+            <button onClick={togglePassword} className='invisible'>
               <InvisibleIcon />
-            </button>
+          </button>
+          }
+          {isVisible && 
+          <button onClick={togglePassword} className='visible'>
+              <VisibleIcon />
+          </button>
+          } 
       </div>
     )
 }

@@ -14,6 +14,7 @@ import loginService from './services/login'
 import SignUpForm from './components/SignUpForm'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
+
 import petImg from './pictures/pet-care.png'
 
 const App = () => {
@@ -45,7 +46,6 @@ const App = () => {
   }, [])
 
   const animalFormRef = useRef()
-  const signupFormRef = useRef()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -59,7 +59,7 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setErrorMessage('wrong username or password')
+      setErrorMessage('Salasana tai käyttäjänimi väärin!')
       setTimeout(() => {
         setErrorMessage(null)
       }, 3000)
@@ -74,84 +74,71 @@ const App = () => {
 
   const deleteAnimal = id => {
     const deletedAnimal = animals.find(a => a.id === id)
-    if (window.confirm(`Delete "${deletedAnimal.name}"?`)) {
+    if (window.confirm(`Poista "${deletedAnimal.name}"?`)) {
       animalService
         .poista(deletedAnimal.id)
         .then(setAnimals(animals.filter((deletedAnimal) => deletedAnimal.id !== id)))  
-        .then(setInfoMessage(`${deletedAnimal.name} deleted`))
-        .then(setTimeout(() => {
-            setInfoMessage(null)
-            }, 3000)
-        )
     }
   }
+
   return (
     <div>
       {!user &&
       <div>
-        <Notification message={infoMessage} />
-        <ErrorNotification message={errorMessage} />
         <header className='header'>
           <div className="loginpage">
             <div className="lItem">
-              <div className="loginImage">
-                <h1>Eläinsuojelukeskus Tassula</h1>
-                <img src={petImg} width="300" style={{position: 'relative'}} alt="login"/>
-              </div>
-              <div>
-                <LoginForm
-                username = {username} password = {password} users={users}
-                handleLogin = {handleLogin}
-                handleUsernameChange={({ target }) => setUsername(target.value)}
-                handlePasswordChange={({ target }) => setPassword(target.value)}
-              />
-              </div>
-              <div>
-                <SignUpForm 
-                users = {users} setUsers = {setUsers}
-                setErrorMessage = {setErrorMessage} setInfoMessage = {setInfoMessage}
-              />
+              <h1>Eläinsuojelukeskus Tassula</h1>
+              <img src={petImg} max-width="100%" width="300px" alt="login"/>
+              <Notification message={infoMessage} />
+              <ErrorNotification message={errorMessage} />
+              <div className='forms'>
+                  <LoginForm
+                  username = {username} password = {password} users={users}
+                  handleLogin = {handleLogin}
+                  handleUsernameChange={({ target }) => setUsername(target.value)}
+                  handlePasswordChange={({ target }) => setPassword(target.value)}/>
+                  <SignUpForm
+                  users = {users} setUsers = {setUsers}
+                  setErrorMessage = {setErrorMessage} setInfoMessage = {setInfoMessage}/>
               </div>
             </div>
           </div>
-       </header>
-       <div>
-       <ContactForm
-          setInfoMessage={setInfoMessage}
-          infoMessage={infoMessage}
-        />
-        </div>
+          <div className='contactform'>
+            <ContactForm/>
+          </div>
+        </header>
       </div>
       }
       {user &&
       <div className="mainpage">
-      <LogoutForm 
-        user = {user}
-        handleLogout = {handleLogout}
+        <LogoutForm 
+          user = {user}
+          handleLogout = {handleLogout}
         />
-      {user.type==="admin" && 
-      <div>
-        <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
-          <AnimalForm 
-            animals={animals} 
-            setAnimals={setAnimals}
-          />
-        </Togglable>
-        <br></br>
-      </div>
-      }
-      <Animals
-        animals={animals} 
-        deleteAnimal={deleteAnimal}
-        setAnimals={setAnimals}
-        user={user}
-        users={users}
-        setUsers={setUsers}
-      />
+        {user.type==="admin" && 
+        <div>
+          <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
+            <AnimalForm 
+              animals={animals} 
+              setAnimals={setAnimals}
+            />
+          </Togglable>
+        </div>
+        }
+        <Animals
+          animals={animals} 
+          deleteAnimal={deleteAnimal}
+          setAnimals={setAnimals}
+          user={user}
+          users={users}
+          setUsers={setUsers}
+        />
       </div>
       }
       <Footer name = "Eläinsuojelukeskus Tassula"/>
-  </div>
+    </div>
   )
 }
 export default App
+

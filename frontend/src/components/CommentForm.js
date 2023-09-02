@@ -41,13 +41,15 @@ const CommentForm = ({
   }
 
   return (
-    <div>
+    <div className="commentForm">
       <textarea
         value={newComment}
         onChange={handleInputChange}
         placeholder="Kommentoi..."
       />
-      <button className="commentsubmit" onClick={handleCommentSubmit}>Julkaise</button>
+      {newComment !== "" &&
+        <button className="commentsubmit" onClick={handleCommentSubmit}>Julkaise</button>
+      }
     </div>
   )
 }
