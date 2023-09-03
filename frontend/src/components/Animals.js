@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import '../index.css'
 import Animal from './Animal'
+import Popup from 'reactjs-popup'
 import { ReactComponent as MaleIcon } from '../icons/male.svg'
 import { ReactComponent as FemaleIcon } from '../icons/female.svg'
 import { ReactComponent as HeartIcon } from '../icons/heart.svg'
+import dogImg from '../pictures/dog.png'
+import catImg from '../pictures/cat.png'
+import pawImg from '../pictures/paw.png'
 
 const Animals = ({ 
       animals,
@@ -78,34 +82,75 @@ const Animals = ({
     <button onClick={() => setShowType('all')} className={`all ${showType==="all" ? 'active' : ''}`} >All</button>
     <button onClick={() => setShowType('dog')} className={`dog ${showType==="dog" ? 'active' : ''}`} >Dogs</button>
     <button onClick={() => setShowType('cat')} className={`cat ${showType==="cat" ? 'active' : ''}`} >Cats</button>
+
+    <Togglable buttonLabel="Suodata profiileja" closeLabel="Piilota suodatin" ref={sortFormRef}>
+          <div className='sortForm'>
+            <div className="sortings">
+              <button onClick={() => handleSexSortClick('male')} className={`male ${activeSexSort === "male" ? 'active' : ''}`} ><MaleIcon/></button>
+              <button onClick={() => handleSexSortClick('female')} className={`female ${activeSexSort === "female" ? 'active' : ''}`}><FemaleIcon/></button>
+                <br></br>
+                <button onClick={() => handleSortByClick('youngest')} className={`youngest ${sortBy==="youngest" ? 'active' : ''}`} >Nuorimmasta vanhimpaan</button>
+                <button onClick={() => handleSortByClick('oldest')} className={`oldest ${sortBy==="oldest" ? 'active' : ''}`} >Vanhimmasta nuorimpaan</button>
+                <br></br>
+                <select value={showLocation} onChange={handleLocationChange}>
+                    <option value="all">Kaikki toimipisteet</option>
+                    <option value="Helsinki">Helsinki</option>
+                    <option value="Oulu">Oulu</option>
+                </select>
+            </div>
+            <button onClick={() => setShowAll(!showAll)} className={`favouritebutton ${!showAll ? 'active' : ''}`}>
+              <HeartIcon />
+            </button>
+          </div>    
+        </Togglable>
     */
 
     return (
       <div>
-        <div className="tab">
-          <button onClick={() => setShowType('all')} className="tablinks">Kaikki karvakamut</button>
-          <button onClick={() => setShowType('dog')} className="tablinks">Koirat</button>
-          <button onClick={() => setShowType('cat')} className="tablinks">Kissat</button>
-        </div>
-        <div className='sortForm'>
-          <div className="sortings">
-            <button onClick={() => handleSexSortClick('male')} className={`male ${activeSexSort === "male" ? 'active' : ''}`} ><MaleIcon/></button>
-            <button onClick={() => handleSexSortClick('female')} className={`female ${activeSexSort === "female" ? 'active' : ''}`}><FemaleIcon/></button>
-              <br></br>
-              <button onClick={() => handleSortByClick('youngest')} className={`youngest ${sortBy==="youngest" ? 'active' : ''}`} >Nuorimmasta vanhimpaan</button>
-              <button onClick={() => handleSortByClick('oldest')} className={`oldest ${sortBy==="oldest" ? 'active' : ''}`} >Vanhimmasta nuorimpaan</button>
-              <br></br>
-              <select value={showLocation} onChange={handleLocationChange}>
-                  <option value="all">Koko Suomi</option>
-                  <option value="Helsinki">Helsinki</option>
-                  <option value="Oulu">Oulu</option>
-              </select>
+        <div className='wrapper'>
+          <div className="tabs_wrap">
+          <Popup trigger=
+            {
+            <button className='editbutton'> Suodata profiileja </button>
+            }
+            modal closeOnDocumentClick>
+            {close => (
+              <div className='sortForm'>
+                <div className='sortings'>
+                  <button className="closeSorting" onClick={close}>Piilota suodatin</button>
+                    <div className="sortingbuttons">
+                      <button onClick={() => handleSexSortClick('male')} className={`male ${activeSexSort === "male" ? 'active' : ''}`} ><MaleIcon/></button>
+                      <button onClick={() => handleSexSortClick('female')} className={`female ${activeSexSort === "female" ? 'active' : ''}`}><FemaleIcon/></button>
+                      <br></br>
+                      <button onClick={() => handleSortByClick('youngest')} className={`youngest ${sortBy==="youngest" ? 'active' : ''}`} >Nuorimmasta vanhimpaan</button>
+                      <button onClick={() => handleSortByClick('oldest')} className={`oldest ${sortBy==="oldest" ? 'active' : ''}`} >Vanhimmasta nuorimpaan</button>
+                      <br></br>
+                      <select value={showLocation} onChange={handleLocationChange}>
+                          <option value="all">Kaikki toimipisteet</option>
+                          <option value="Helsinki">Helsinki</option>
+                          <option value="Oulu">Oulu</option>
+                      </select>
+                    </div>
+                  <button onClick={() => setShowAll(!showAll)} className={`favouritebutton ${!showAll ? 'active' : ''}`}>
+                    <HeartIcon />
+                  </button> 
+                </div> 
+            </div>
+            )}
+          </Popup>
+            <ul>
+              <li>
+                <button onClick={() => setShowType('all')} className={`tablinks ${showType==="all" ? 'active' : ''}`}><img src={pawImg} max-width="100%" width="90px" alt="paw"/>Kaikki</button>
+              </li>
+              <li>
+                <button onClick={() => setShowType('dog')} className={`tablinks ${showType==="dog" ? 'active' : ''}`}><img src={dogImg} max-width="100%" width="90px" alt="dog"/>Koirat</button>
+              </li>
+              <li>
+                <button onClick={() => setShowType('cat')} className={`tablinks ${showType==="cat" ? 'active' : ''}`}><img src={catImg} max-width="100%" width="90px" alt="cat"/>Kissat</button>
+              </li>
+            </ul>
           </div>
-          <button onClick={() => setShowAll(!showAll)} className={`favouritebutton ${!showAll ? 'active' : ''}`}>
-            <HeartIcon />
-          </button>
-        </div>
-
+        </div> 
         <div className='animals'>
         {animalsToShow.map(animal => 
         <Animal 
@@ -116,6 +161,7 @@ const Animals = ({
           setAnimals={setAnimals}
           deleteAnimal={() => deleteAnimal(animal.id)}
           toggleFavourite={() => toggleFavourite(animal.id)}  />
+          
         )}
         </div>
       </div>

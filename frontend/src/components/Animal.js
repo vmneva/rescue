@@ -1,5 +1,4 @@
 import '../index.css'
-import {  useState } from 'react'
 import Popup from 'reactjs-popup'
 import CommentForm from './CommentForm'
 import Comment from './Comment'
@@ -18,12 +17,9 @@ const Animal = ({
       user,
     }) => {
 
-
     const comments = animal.comments || []    
     let likes = animal.likes || 0
     const likedUsers = animal.users.map(user => user.id) || []
-    const [commentsExpanded, setCommentsExpanded] = useState(false)
-    const [showComments, setShowComments] = useState(false)
     
     const handleLike = (event) => {
         event.preventDefault()
@@ -59,9 +55,6 @@ const Animal = ({
                 console.error('Error deleting like:', error);
             })
     }
-    const handleComments = () => {
-        setShowComments(!showComments)
-      }
 
     return (
     <div className='animal'>
@@ -89,29 +82,94 @@ const Animal = ({
             <button className="deleteAnimal" onClick={deleteAnimal}>Poista</button> 
         </div>
         }
+        <div className="location">{animal.location} </div>
         <div className='animalName'>
-            {animal.name + " "} 
-            {animal.sex==="male" && <MaleIcon/> }
-            {animal.sex==="female" && <FemaleIcon/> }
-            {" | s.  "}{animal.date_of_birth}
+            <h3>
+                {animal.name + " "}
+                {animal.sex==="male" && <MaleIcon/> }
+                {animal.sex==="female" && <FemaleIcon/> }
+                {" | s.  "}{animal.date_of_birth}
+            </h3>
         </div>
         <div className='animal-image-container'>
             <img id="animalImg" src={animal.image} alt={`${animal.name}`}/>
         </div>
-        <h4>
+        <div>
             {(likedUsers).includes(user.id) &&
-                <button onClick={handleDeleteLike} className='liked'> <HeartIcon /></button>
-            }
+                <button onClick={handleDeleteLike} className='liked'> <HeartIcon /></button>}
             {!(likedUsers).includes(user.id) &&
-                <button onClick={handleLike} className='like'> <HeartIcon /></button>
-            }
+                <button onClick={handleLike} className='like'> <HeartIcon /></button>}
             {animal.likes}{"   "}
-            <button className="commentbutton" onClick={handleComments}><CommentIcon className="commenticon"/></button>
-            {comments.length}
-        </h4>
-        <h4 className='profileInfo'>{animal.description}</h4>
-        <h5>Sijaitsen Tassulan keskuksessa {animal.location}. Alkuperäinen kotimaani on {animal.origin}</h5>
+            <Popup trigger=
+                {<button className='commentbutton'> <CommentIcon className="commenticon"/>{comments.length} </button>}
+                modal closeOnDocumentClick>
+                {close => (
+                <div className='commentWindow'>
+                    <div className="commentContent">
+                        <button className="close" onClick={close}>X</button>
+                        <ul className='comments'>
+                            {comments.map(comment =>
+                            <Comment
+                                key={comment._id}
+                                comment={comment}
+                                animal={animal}
+                                animals={animals}
+                                setAnimals={setAnimals}
+                                user={user}/>
+                            )}
+                        </ul>
+                        <CommentForm
+                            animal={animal}
+                            user={user}
+                            animals={animals}
+                            setAnimals={setAnimals}/>
+                    </div>
+                </div>
+                )}
+            </Popup>
+            <div className='profileInfo'>
+                <h4>{animal.description}</h4>
+            </div>
+        </div>
         <div className='commentField'>
+        <Popup trigger=
+            {<button className='showcomments'> Näytä kaikki {comments.length} kommenttia </button>}
+            modal closeOnDocumentClick>
+            {close => (
+            <div className='commentWindow'>
+                <div className="commentContent">
+                    <button className="close" onClick={close}>X</button>
+                    <ul className='comments'>
+                        {comments.map(comment =>
+                        <Comment
+                            key={comment._id}
+                            comment={comment}
+                            animal={animal}
+                            animals={animals}
+                            setAnimals={setAnimals}
+                            user={user}/>
+                        )}
+                    </ul>
+                    <CommentForm
+                        animal={animal}
+                        user={user}
+                        animals={animals}
+                        setAnimals={setAnimals}/>
+                </div>
+            </div>
+            )}
+        </Popup>
+        
+        </div>
+    </div>
+    )
+}
+
+
+export default Animal
+
+/*
+ <div className='commentField'>
             {comments.length < 2 &&
             <ul className='comments'>
                 {comments.map(comment =>
@@ -159,16 +217,5 @@ const Animal = ({
             )
             )}
         </div>
-            {showComments &&
-            <CommentForm
-                animal={animal}
-                user={user}
-                animals={animals}
-                setAnimals={setAnimals}/>
-            }
     </div>
-    )
-}
-
-
-export default Animal
+*/
