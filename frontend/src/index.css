@@ -1,19 +1,86 @@
 html, body {
-  height: 100%;
-  width: 100%;
+  background: #f6efe7;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* --------- MAINPAGE --------- */ 
-.mainpage, .mainpage:before, .mainpage:after{
-  font: 300 1em/1.5 'Merriweather', serif; 
-  color: #242424;
-  box-sizing: border-box;
-  padding: 0; margin: 0;
-  background: #f5f5f5;
-}
 .mainpage {
-  margin: auto;
-  padding: 100px 0;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  height: 100%;
+  font-weight: 800;
+  background: #f6efe7;
+  position: absolute;
+  margin-bottom: 250px;
+}
+.headerAndLogout {
+  position: fixed;
+  background: white;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  padding-left:10px;
+  max-height: 50px;
+  z-index: 999;
+  display: flex; 
+  justify-content: flex-start;
+}
+.mainpage h2 {
+  color: black;
+  font-size: 25px;
+  font-weight: 700;
+  padding: 0;
+  text-align: left;
+  margin: 0;
+  margin-top: 0px;
+}
+.headerAndLogout img {
+  width: 50px;
+  margin-right: 10px;
+}
+.mainpageContent {
+  padding-top: 60px;
+}
+.helpbutton {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  position: absolute;
+  right: 250px;
+  top: 10px;
+  padding: 0;
+}
+.helpWindow {
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; 
+}
+.helpWindow .close {
+  background-color: tomato;
+  border: 2px solid #422800;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: #422800 4px 4px 0 0;
+  border-radius: 30px;
+  color: white;
+  padding: 0 18px;
+  line-height: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 /* --------- NOTIFICATIONS --------- */
@@ -55,73 +122,39 @@ html, body {
   position: absolute;
   top: 2%;
   right: 1%;
-  width: auto;
+}
+.logout .logoutUser {
+  width: 100%;
+  position: relative;
+  right: 0;
+
 }
 .logout button {
-  background-color: #fbeee0;
+  background-color: tomato;
   border: 2px solid #422800;
-  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
   box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 18px;
+  border-radius: 30px;
+  color: white;
   padding: 0 18px;
-  line-height: 45px;
-  text-align:justify;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  position: absolute;
-  right: 0%;
-  top: 25px;
-  width: 110px;
+  line-height: 30px;
+  cursor: pointer;
+  position: relative;
+  top: 10%;
+  right: 0;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer; 
 }
-.logout svg {
-  fill: #000000;
-  width: 30px;
-  height: 25px;
-  margin-right: auto;
-  border: none;
-  position: absolute;
-  top: 20%;
+.logout button:hover {
+  background-color: #e77373;
 }
 
-
-/* --------- BUTTONS --------- */
-.like {
-  border: none;
-  background-color: none;
-  cursor: pointer;
-  background-color: transparent;
-}
-.liked {
-  border: none;
-  background-color: none;
-  cursor: pointer;
-  background-color: transparent;
-}
-.like svg {
-  fill: white;
-  width: 30px;
-  height: 25px;
-  margin-right: auto;
-  border: none;
-}
-.liked svg {
-  fill: red;
-  border: none;
-  width: 30px;
-  height: 25px;
-}
 
 /* ---------  LOG IN AND SIGN UP ---------*/
 .header {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  height: 100%;
 }
 .header h1{
   color: black;
@@ -137,14 +170,20 @@ html, body {
   font-weight: 900;
   text-align: center;
 }
-.loginpage {
+.loginAndsignup {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  background-color: #f6efe7;
+  padding-bottom: 150px;
   padding-top: 200px;
-  padding-bottom: 250px;
-  background-color: #f5f5f5;
+}
+.loginpage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 250px;
+  padding-top: 100px;
 }
 .forms {
   display: flex;
@@ -216,11 +255,14 @@ html, body {
 
 /* --------- CONTACT FORM --------- */
 .contactform {
-  background-color: transparent;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
   font-family: 'Montserrat', sans-serif;
-  position: absolute;
-  top: 2%;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   right: 1%;
+  position: absolute;
+  top: 0%;
 }
 .contactinfo input[type=text], 
 .contactinfo textarea {
@@ -242,18 +284,20 @@ html, body {
   border-radius: 4px;
   cursor: pointer;
   position: absolute;
-  right: 1%;
+  right: 8%;
+  top: 82%;
 }
 .contactinfo button[type=submit]:hover {
   background-color: #45a049;
 }
 .contactinfo {
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   background-color: transparent;
   text-align: center;
   padding: 10px;
+  margin-bottom: 20px;
 }
 .contactinfo img {
   width: 100px;
@@ -279,8 +323,8 @@ html, body {
   border-radius: 4px;
   cursor: pointer;
   position: absolute;
-  right: 13%;
-  top: 96%;
+  right: 20%;
+  top: 82%;
 }
 .closecontact:hover {
   background-color: #8d2a06;
@@ -288,13 +332,14 @@ html, body {
 
 /* --------- ANIMAL FORM --------- */
 .AnimalForm {
-  width: 30%;
   background-color: #e2d1ca;
   padding: 15px;
   font-weight: 600;
   font-size: 18px;
   border-radius: 20px;
   display: grid;
+  text-align: left;
+  position: absolute;
 }
 .AnimalForm input[type=text], select, textarea {
   width: 100%;
@@ -307,21 +352,27 @@ html, body {
   resize: vertical 
 }
 .AnimalForm button {
-  background-color: #fbeee0;
+  background-color: rgba(62, 196, 55, 0.801);
   border: 2px solid #422800;
-  border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
   box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
+  border-radius: 30px;
+  color: white;
   padding: 0 18px;
-  line-height: 35px;
-  width: 120px;
-  text-align: center;
-  position: relative; 
-  left: 160px; 
-  bottom: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  position: relative;
+  top: 0;
+  right: 1%;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer; 
+}
+.AnimalForm button:hover {
+  background-color: rgba(53, 158, 47, 0.801);
+}
+.formContent {
+  width: 100%;
 }
 .AnimalForm select {
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -330,22 +381,7 @@ html, body {
   border-radius: 10px;
   width: 50%;
 }
-.listbutton {
-  background-color: #fbeee0;
-  border: 2px solid #422800;
-  border-radius: 30px;
-  box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 0 18px;
-  line-height: 35px;
-  width: 200px;
-  text-align: center;
-  right: 1px;
-}
+.listbutton,
 .closebutton {
   background-color: #fbeee0;
   border: 2px solid #422800;
@@ -356,20 +392,12 @@ html, body {
   display: inline-block;
   font-weight: 600;
   font-size: 15px;
-  padding: 0 18px;
+  padding: 9px 18px;
+  margin-left: 10px;
   line-height: 35px;
-  width: 200px;
   text-align: center;
-  right: 1px;
-}
-.closebutton svg{
-  fill: red;
-  border: none;
-  width: 40px;
-  height: 40px;
-}
-.AnimalForm button:hover {
-  background-color: #fff;
+  position: relative;
+  top: 1%;
 }
 .listbutton:hover {
   background-color: #fff;
@@ -380,6 +408,7 @@ html, body {
   height: 30px;
   margin-right: auto;
   border: none;
+  margin-right: 5px;
 }
 .commentbutton {
   border: none;
@@ -479,9 +508,6 @@ html, body {
   box-shadow: #422800 2px 2px 0 0;
   transform: translate(2px, 2px);
 }
-.sortingbuttons button:hover {
-  background-color: #fff;
-}
 @media (min-width: 768px) {
   .sortings button {
     min-width: 120px;
@@ -505,9 +531,6 @@ html, body {
   width: 40px;
   height: 40px;
   background-color: none;
-}
-.editbutton:hover {
-  background-color: #f9d8b444;
 }
 .wrapper{
   width: 100%;
@@ -564,54 +587,48 @@ html, body {
 
 /* --------- ANIMAL PROFILE --------- */
 #animalImg {
-  width: 350px;
+  width: 400px;
   height: 400px;
-  box-shadow:
-    -50px -50px 0 -40px whitesmoke,
-    50px 50px 0 -40px whitesmoke;
-}
-.animal .actions button {
-  border: none;
-  background: none;
-  font-size: 24px;
-  color: #8bc34a;
-  cursor: pointer;
-  transition:.5s;
-  &:hover{
-    color: #4CAF50  ;
-    transform: rotate(22deg)
-  }
+  margin-top: 5px;
 }
 .animalName {
   font-weight: 900;
   font-size: 20px;
   text-align: center;
-  padding-top: 1px;
+  position: absolute;
+  top: 0; 
+  right: 38%; 
+}
+.profileInfo {
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 15px;
+}
+.birthDate {
+  position: absolute;
+  bottom: 22%; 
+  right: 5%; 
 }
 .location {
   padding-right: 15px;
+  margin-left: 0;
   padding-top: 10px;
   text-align: right;
   color: #422800;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 15px;
+  font-weight: 500;
   font-family: 'Montserrat', sans-serif;
 }
 .animals {
-  display: flex;
-  flex-wrap: wrap;
-  height: 100%;
-}
-.animal .actions {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  padding: 0.5rem 1rem;
-}
-.actions svg {
-  width: 30px;
-  height: 30px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fill,minmax(450px, 1fr));
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 .animal-image-container {
   display: flex;
@@ -622,39 +639,35 @@ html, body {
 }
 .animal {
   color: #422800;
+  text-align: left;
   position: relative;
   padding: 10px;
-  background: #e2d1ca;
+  background: #ffffff;
   margin: 10px;
+  margin-bottom: 20px;
   letter-spacing: 2px; 
   box-sizing: border-box;
   border-style: none;
-  border-radius: 30px;
   max-width: 450px;
   font-family: 'Montserrat', sans-serif;
 }
 .animal .deleteAnimal {
-  background-color: #c93a07;
+  background-color: tomato;
+  border: 2px solid #422800;
   font-family: 'Montserrat', sans-serif;
+  box-shadow: #422800 4px 4px 0 0;
+  border-radius: 30px;
   color: white;
   display: inline-block;
   padding: 0 18px;
-  font-size: 15px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  line-height: 10px;
+  font-size: 14px;
+  padding: 12px 10px;
+  line-height: 5px;
   text-align: center;
   cursor: pointer;
   position: absolute;
-  top: 0;
-  right: 0;
-}
-.deleteComment {
-  border: none;
-  background-color: none;
-  cursor: pointer;
-  background-color: transparent;
+  top: 6%;
+  left: 2%;
 }
 .deleteComment svg {
   fill: grey;
@@ -675,7 +688,9 @@ html, body {
   border-radius: 10px;
   width: 50%;
 }
-.editbutton {
+.editbutton,
+.commentsubmit,
+.showcomments {
   background-color: #fbeee0;
   border: 2px solid #422800;
   border-radius: 30px;
@@ -686,7 +701,7 @@ html, body {
   font-weight: 600;
   font-size: 15px;
   padding: 0 18px;
-  line-height: 30px;
+  line-height: 25px;
   text-align: center;
 }
 .commentContent {
@@ -696,7 +711,7 @@ html, body {
 }
 .editWindow,
 .commentWindow {
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  background: rgba(0, 0, 0, 0.5); 
   position: fixed;
   top: 0;
   left: 0;
@@ -705,37 +720,30 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Ensure it's above other elements */
+  z-index: 999; 
 }
-.commentWindow .close {
-  background-color: #c93a07;
-  font-family: 'Montserrat', sans-serif;
-  color: white;
-  padding: 4px 8px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-}
+.commentWindow .close,
 .editWindow .close {
   background-color: #c93a07;
   font-family: 'Montserrat', sans-serif;
   color: white;
-  padding: 12px 20px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
   position: absolute;
   top: 10px;
   right: 10px;
+}
+.commentWindow .close {
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.editWindow .close {
+  padding: 12px 20px;
+  border-radius: 4px;
   font-size: 15px;
   font-weight: 500;
-  cursor: pointer;
 }
 .editWindow .close:hover,
 .deleteAnimal:hover,
@@ -743,7 +751,8 @@ html, body {
   background-color: #8d2a06;
 }
 .editContent,
-.commentContent {
+.commentContent,
+.helpContent {
   background: white;
   border: 1px solid #ccc;
   padding: 20px;
@@ -755,6 +764,33 @@ html, body {
 .commentsubmit:hover,
 .closebutton:hover {
   background-color: #fff;
+}
+.editbutton:hover {
+  background-color: #f9d8b444;
+}
+.like,
+.liked,
+.deleteComment,
+.commentbutton {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+}
+.like svg,
+.liked svg {
+  fill: white;
+  width: 25px;
+  height: 25px;
+}
+.like svg {
+  fill: rgb(200, 200, 200);
+}
+.liked svg {
+  fill: red;
 }
 
 
@@ -784,44 +820,28 @@ html, body {
 .comment-text {
   margin: 0;
 }
-.commentsubmit,
-.showcomments {
-  background-color: #fbeee0;
-  border: 2px solid #422800;
-  border-radius: 20px;
-  box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 600;
-  font-size: 15px;
-  padding: 0 10px;
-  line-height: 30px;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
 
 /* --------- FOOTER --------- */ 
 .container {
-  height: 250px;
   font-size: 25px;
   padding-left: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 0;
-  right: 1%;
-  background-color: #333; /* Adjust this to your footer's background color */
-  color: #ffffffb6; 
+  text-align: left;
+  background-color: #333; /* Background color */
+  color: #ffffffb6;
   padding: 10px;
   font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  min-height: 250px;
+  box-sizing: content-box;
+  position: sticky;
+  top: 100%;
+  font-weight: 200;
 }
 .footer {
   color: rgba(128, 128, 128, 0.561);
-  
 }
 footer p {
   font-size: 13px;
@@ -835,18 +855,9 @@ footer h4 {
   position: relative;
 }
 .social {
-  padding-top: 10px;
+  padding-top: 40px;
 }
-.social .facebook {
-  padding: 20px;
-  font-size: 20px;
-  width: 20px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 50%;
-  background: #3B5998;
-  color: white;
-}
+.social .facebook,
 .social .instagram {
   padding: 20px;
   font-size: 20px;
@@ -854,6 +865,24 @@ footer h4 {
   text-align: center;
   text-decoration: none;
   border-radius: 50%;
-  background: #262626;
   color: white;
+}
+.social .facebook {
+  background: #3B5998;
+}
+.social .instagram {
+  background: #262626;
+}
+.appreciations {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+  text-align: right;
+}
+.appreciations p {
+  margin: 0;
+}
+.appreciations a {
+  color: rgba(255, 255, 255, 0.143);
+  font-size: 10px;
 }

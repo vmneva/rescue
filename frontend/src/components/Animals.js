@@ -78,33 +78,6 @@ const Animals = ({
 
     animalsToShow.sort(sortingFunctions[sortBy])
 
-    /*
-    <button onClick={() => setShowType('all')} className={`all ${showType==="all" ? 'active' : ''}`} >All</button>
-    <button onClick={() => setShowType('dog')} className={`dog ${showType==="dog" ? 'active' : ''}`} >Dogs</button>
-    <button onClick={() => setShowType('cat')} className={`cat ${showType==="cat" ? 'active' : ''}`} >Cats</button>
-
-    <Togglable buttonLabel="Suodata profiileja" closeLabel="Piilota suodatin" ref={sortFormRef}>
-          <div className='sortForm'>
-            <div className="sortings">
-              <button onClick={() => handleSexSortClick('male')} className={`male ${activeSexSort === "male" ? 'active' : ''}`} ><MaleIcon/></button>
-              <button onClick={() => handleSexSortClick('female')} className={`female ${activeSexSort === "female" ? 'active' : ''}`}><FemaleIcon/></button>
-                <br></br>
-                <button onClick={() => handleSortByClick('youngest')} className={`youngest ${sortBy==="youngest" ? 'active' : ''}`} >Nuorimmasta vanhimpaan</button>
-                <button onClick={() => handleSortByClick('oldest')} className={`oldest ${sortBy==="oldest" ? 'active' : ''}`} >Vanhimmasta nuorimpaan</button>
-                <br></br>
-                <select value={showLocation} onChange={handleLocationChange}>
-                    <option value="all">Kaikki toimipisteet</option>
-                    <option value="Helsinki">Helsinki</option>
-                    <option value="Oulu">Oulu</option>
-                </select>
-            </div>
-            <button onClick={() => setShowAll(!showAll)} className={`favouritebutton ${!showAll ? 'active' : ''}`}>
-              <HeartIcon />
-            </button>
-          </div>    
-        </Togglable>
-    */
-
     return (
       <div>
         <div className='wrapper'>

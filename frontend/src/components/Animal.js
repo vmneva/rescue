@@ -62,7 +62,7 @@ const Animal = ({
         <div>
             <Popup trigger=
                 {
-                <button className='editbutton'> Muokkaa eläinkorttia </button>
+                <button className='editbutton'> Muokkaa </button>
                 }
                 modal
                 closeOnDocumentClick>
@@ -83,23 +83,17 @@ const Animal = ({
         </div>
         }
         <div className="location">{animal.location} </div>
-        <div className='animalName'>
-            <h3>
-                {animal.name + " "}
-                {animal.sex==="male" && <MaleIcon/> }
-                {animal.sex==="female" && <FemaleIcon/> }
-                {" | s.  "}{animal.date_of_birth}
-            </h3>
-        </div>
+       
         <div className='animal-image-container'>
             <img id="animalImg" src={animal.image} alt={`${animal.name}`}/>
         </div>
+        
         <div>
             {(likedUsers).includes(user.id) &&
                 <button onClick={handleDeleteLike} className='liked'> <HeartIcon /></button>}
             {!(likedUsers).includes(user.id) &&
                 <button onClick={handleLike} className='like'> <HeartIcon /></button>}
-            {animal.likes}{"   "}
+            {animal.likes}
             <Popup trigger=
                 {<button className='commentbutton'> <CommentIcon className="commenticon"/>{comments.length} </button>}
                 modal closeOnDocumentClick>
@@ -127,40 +121,22 @@ const Animal = ({
                 </div>
                 )}
             </Popup>
+            <div className="birthDate">
+                {"s.  "}{animal.date_of_birth}
+            </div>
+            <div className='animalName'>
+            <h3>
+                {animal.name + " "}
+                {animal.sex==="male" && <MaleIcon/> }
+                {animal.sex==="female" && <FemaleIcon/> }
+                
+            </h3>
+        </div>
             <div className='profileInfo'>
-                <h4>{animal.description}</h4>
+                {animal.description}
             </div>
         </div>
-        <div className='commentField'>
-        <Popup trigger=
-            {<button className='showcomments'> Näytä kaikki {comments.length} kommenttia </button>}
-            modal closeOnDocumentClick>
-            {close => (
-            <div className='commentWindow'>
-                <div className="commentContent">
-                    <button className="close" onClick={close}>X</button>
-                    <ul className='comments'>
-                        {comments.map(comment =>
-                        <Comment
-                            key={comment._id}
-                            comment={comment}
-                            animal={animal}
-                            animals={animals}
-                            setAnimals={setAnimals}
-                            user={user}/>
-                        )}
-                    </ul>
-                    <CommentForm
-                        animal={animal}
-                        user={user}
-                        animals={animals}
-                        setAnimals={setAnimals}/>
-                </div>
-            </div>
-            )}
-        </Popup>
         
-        </div>
     </div>
     )
 }
@@ -218,4 +194,33 @@ export default Animal
             )}
         </div>
     </div>
+    <div className='commentField'>
+        <Popup trigger=
+            {<button className='showcomments'> Näytä kaikki {comments.length} kommenttia </button>}
+            modal closeOnDocumentClick>
+            {close => (
+            <div className='commentWindow'>
+                <div className="commentContent">
+                    <button className="close" onClick={close}>X</button>
+                    <ul className='comments'>
+                        {comments.map(comment =>
+                        <Comment
+                            key={comment._id}
+                            comment={comment}
+                            animal={animal}
+                            animals={animals}
+                            setAnimals={setAnimals}
+                            user={user}/>
+                        )}
+                    </ul>
+                    <CommentForm
+                        animal={animal}
+                        user={user}
+                        animals={animals}
+                        setAnimals={setAnimals}/>
+                </div>
+            </div>
+            )}
+        </Popup>
+        </div>
 */

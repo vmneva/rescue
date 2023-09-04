@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './index.css'
+import Popup from 'reactjs-popup'
 
 import Animals from './components/Animals'
 import AnimalForm from './components/AnimalForm'
@@ -16,6 +17,9 @@ import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 
 import petImg from './pictures/pet-care.png'
+import helpImg from './pictures/help.png'
+import adminHelpImg from './pictures/admin_help.png'
+import clientHelpImg from './pictures/client_help.png'
 
 const App = () => {
   const [animals, setAnimals] = useState([])
@@ -84,9 +88,12 @@ const App = () => {
   return (
     <div>
       {!user &&
-      <div>
+      <div className='loginpage'>
         <header className='header'>
-          <div className="loginpage">
+        <div className='contactform'>
+            <ContactForm/>
+          </div>
+          <div className="loginAndsignup">
             <div className="lItem">
               <h1>Eläinsuojelukeskus Tassula</h1>
               <img src={petImg} max-width="100%" width="300px" alt="login"/>
@@ -104,39 +111,59 @@ const App = () => {
               </div>
             </div>
           </div>
-          <div className='contactform'>
-            <ContactForm/>
-          </div>
         </header>
-      </div>
+        <Footer name = "Eläinsuojelukeskus Tassula"/>
+        </div>
       }
       {user &&
       <div className="mainpage">
-        <LogoutForm 
-          user = {user}
-          handleLogout = {handleLogout}
-        />
-        {user.type==="admin" && 
-        <div>
-          <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
-            <AnimalForm 
-              animals={animals} 
-              setAnimals={setAnimals}
-            />
-          </Togglable>
+        <div className="headerAndLogout">
+        <Popup trigger=
+                {
+                <button className='helpbutton'> <img src={helpImg} alt="login"/></button>
+                }
+                modal closeOnDocumentClick>
+                {close => (
+                  <div className='helpWindow'>
+                    <div className='helpContent'>
+                      <button className="close" onClick={close}>Sulje</button>
+                      Toimintojen selitykset
+                      {user.type === "admin" && <img src={adminHelpImg} width="100%" alt="help"/>}
+                      {user.type !== "admin" && <img src={clientHelpImg} width="100%" alt="help"/>}
+                    </div>
+                  </div>
+                )}
+            </Popup>
+          <h2>
+            <img src={petImg} alt="login"/>
+            Eläinsuojelukeskus Tassula
+          </h2>
+          {user.type==="admin" && 
+              <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
+                <AnimalForm 
+                  animals={animals} 
+                  setAnimals={setAnimals}
+                />
+              </Togglable>
+          }
+          <LogoutForm 
+            user = {user}
+            handleLogout = {handleLogout}
+          />
         </div>
-        }
-        <Animals
-          animals={animals} 
-          deleteAnimal={deleteAnimal}
-          setAnimals={setAnimals}
-          user={user}
-          users={users}
-          setUsers={setUsers}
-        />
+        <div className='mainpageContent'>
+          <Animals
+            animals={animals} 
+            deleteAnimal={deleteAnimal}
+            setAnimals={setAnimals}
+            user={user}
+            users={users}
+            setUsers={setUsers}
+          />
+        </div>
+        <Footer name = "Eläinsuojelukeskus Tassula"/>
       </div>
       }
-      <Footer name = "Eläinsuojelukeskus Tassula"/>
     </div>
   )
 }

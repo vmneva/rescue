@@ -86,79 +86,81 @@ const AnimalForm = ({
     }
     return (
       <div className='AnimalForm'>
-        <form onSubmit={addAnimal}>
-        <label>
-        <select id="type">
-            <option value="dog">Koira</option>
-            <option value="cat">Kissa</option>
-        </select>
-      </label>
-      <label>
-        <select id="sex">
-            <option value="female">Narttu</option>
-            <option value="male">Uros</option>
-        </select>
-      </label>  
-      <br/>    
-      <label>
-        Nimi
-        <input
-          type="text"
-          name="name"
-          value={animalData.name}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        Arvio syntymäajasta
-        <input
-          type="text"
-          name="date_of_birth"
-          value={animalData.date_of_birth}
-          onChange={handleInputChange}
-          placeholder='pp.kk.vvvv'
-        />
-      </label>
-      <br />
-      <label>
-        Alkuperämaa
-        <input
-          type="text"
-          name="origin"
-          value={animalData.origin}
-          onChange={handleInputChange}
-        />
-      </label>
-      <br />
-      <label>
-        <select id="location">
-            <option value="Helsinki">Helsinki</option>
-            <option value="Oulu">Oulu</option>
-        </select>
-      </label>
-      <br/>
-      <label>
-        Kuvateksti
-            <textarea 
-              id="description" 
-              name="description" 
-              placeholder="Pieni kuvaus eläimestä..." >
-            </textarea>
-          </label>
-      <label>
-        Kuva
-        <br></br>
-        <input
-          type="file"
-          accept=".jpg,.jpeg"
-          name="image"
-          onChange={handleImageUpload}
-        />
-      </label>
-      <button type="submit">Lisää eläin</button>
-    </form>
-        </div> 
+        <div className="formContent">
+          <form onSubmit={addAnimal}>
+            <label>
+            <select id="type">
+                <option value="dog">Koira</option>
+                <option value="cat">Kissa</option>
+            </select>
+            </label>
+            <label>
+              <select id="sex">
+                  <option value="female">Narttu</option>
+                  <option value="male">Uros</option>
+              </select>
+            </label>  
+            <br/>    
+            <label>
+              Nimi
+              <input
+                type="text"
+                name="name"
+                value={animalData.name}
+                onChange={handleInputChange}
+              />
+            </label>
+            <br />
+            <label>
+              Arvio syntymäajasta
+              <input
+                type="text"
+                name="date_of_birth"
+                value={animalData.date_of_birth}
+                onChange={handleInputChange}
+                placeholder='pp.kk.vvvv'
+              />
+            </label>
+            <br />
+            <label>
+              Alkuperämaa
+              <input
+                type="text"
+                name="origin"
+                value={animalData.origin}
+                onChange={handleInputChange}
+              />
+            </label>
+            <br />
+            <label>
+              <select id="location">
+                  <option value="Helsinki">Helsinki</option>
+                  <option value="Oulu">Oulu</option>
+              </select>
+            </label>
+            <br/>
+            <label>
+              Kuvateksti
+                  <textarea 
+                    id="description" 
+                    name="description" 
+                    placeholder="Pieni kuvaus eläimestä...">
+                  </textarea>
+                </label>
+            <label>
+              Kuva
+              <br></br>
+              <input
+                type="file"
+                accept=".jpg,.jpeg"
+                name="image"
+                onChange={handleImageUpload}
+              />
+            </label>
+            <button type="submit">Lisää eläin</button>
+          </form>
+        </div>
+      </div> 
     )
 }
 export default AnimalForm

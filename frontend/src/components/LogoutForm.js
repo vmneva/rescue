@@ -1,5 +1,4 @@
 import '../index.css'
-import { ReactComponent as LogoutIcon } from '../icons/logout.svg'
 
 const LogoutForm = ({
     handleLogout,
@@ -7,14 +6,12 @@ const LogoutForm = ({
 
 }) => {
     return (
-    <div>
-    <form onSubmit={handleLogout}>
     <div className="logout">
-        {user.type==="admin" && <div>{user.name} (ADMIN)</div> }
-        {user.type==="client" && <div>{user.name}</div>}
-        <button type="submit">logout<LogoutIcon/></button>
-    </div>
-    </form>  
+        <form onSubmit={handleLogout}>
+            {user.type==="admin" && <div className='logoutUser'>{user.name} (ADMIN)</div> }
+            {user.type==="client" && <div className='logoutUser'>{user.name}</div>}
+            <button type="submit">kirjaudu ulos</button>
+        </form>  
     </div> 
     )
 }
