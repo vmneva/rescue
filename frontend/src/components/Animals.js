@@ -83,9 +83,7 @@ const Animals = ({
         <div className='wrapper'>
           <div className="tabs_wrap">
           <Popup trigger=
-            {
-            <button className='editbutton'> Suodata profiileja </button>
-            }
+            {<button className='editbutton'> Suodata profiileja </button>}
             modal closeOnDocumentClick>
             {close => (
               <div className='sortForm'>
@@ -113,13 +111,16 @@ const Animals = ({
           </Popup>
             <ul>
               <li>
-                <button onClick={() => setShowType('all')} className={`tablinks ${showType==="all" ? 'active' : ''}`}><img src={pawImg} max-width="100%" width="90px" alt="paw"/>Kaikki</button>
+                <button onClick={() => setShowType('all')} className={`tablinks ${showType==="all" ? 'active' : ''}`}>
+                  <img src={pawImg} max-width="100%" width="90px" alt="paw"/>Kaikki</button>
               </li>
               <li>
-                <button onClick={() => setShowType('dog')} className={`tablinks ${showType==="dog" ? 'active' : ''}`}><img src={dogImg} max-width="100%" width="90px" alt="dog"/>Koirat</button>
+                <button onClick={() => setShowType('dog')} className={`tablinks ${showType==="dog" ? 'active' : ''}`}>
+                  <img src={dogImg} max-width="100%" width="90px" alt="dog"/>Koirat</button>
               </li>
               <li>
-                <button onClick={() => setShowType('cat')} className={`tablinks ${showType==="cat" ? 'active' : ''}`}><img src={catImg} max-width="100%" width="90px" alt="cat"/>Kissat</button>
+                <button onClick={() => setShowType('cat')} className={`tablinks ${showType==="cat" ? 'active' : ''}`}>
+                  <img src={catImg} max-width="100%" width="90px" alt="cat"/>Kissat</button>
               </li>
             </ul>
           </div>

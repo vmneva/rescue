@@ -91,7 +91,7 @@ const App = () => {
       <div className='loginpage'>
         <header className='header'>
         <div className='contactform'>
-            <ContactForm/>
+            <ContactForm setInfoMessage={setInfoMessage}/>
           </div>
           <div className="loginAndsignup">
             <div className="lItem">
@@ -134,13 +134,13 @@ const App = () => {
                   </div>
                 )}
             </Popup>
-          <h2>
+          <h1>
             <img src={petImg} alt="login"/>
             Eläinsuojelukeskus Tassula
-          </h2>
+          </h1>
           {user.type==="admin" && 
               <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
-                <AnimalForm 
+                <AnimalForm
                   animals={animals} 
                   setAnimals={setAnimals}
                 />

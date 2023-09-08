@@ -1,12 +1,10 @@
 import '../index.css'
 import { useState } from 'react'
-import Notification from './Notification'
 import contactImg from '../pictures/operator.png'
 
-const ContactForm = () => {
+const ContactForm = ( {setInfoMessage} ) => {
 
     const [showForm, setShowForm] = useState(false)
-    const [infoMessage, setInfoMessage] = useState(null)
 
     const handleClick = () => {
       setShowForm(!showForm)
@@ -28,7 +26,7 @@ const ContactForm = () => {
         {showForm && (<button className="closecontact" onClick={handleClick}>Sulje</button>) }
         {!showForm && (<button className="contactbutton" onClick={handleClick}>Ota yhteyttä?</button>) }        
         <img src={contactImg} alt="contact"/>
-        {showForm ? (
+        {showForm &&
         <form onSubmit={addMessage}>
           <label>
           <input 
@@ -55,11 +53,7 @@ const ContactForm = () => {
           <br></br>
           <button type="submit">Lähetä</button>
           </form>
-        ) : (
-          <div>
-            <Notification className="contactnotification" message={infoMessage} />
-          </div>
-        )}
+          }
       </div>
     )
 }
