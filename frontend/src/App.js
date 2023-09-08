@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
 import './index.css'
+import { useState, useEffect, useRef } from 'react'
 import Popup from 'reactjs-popup'
 
 import Animals from './components/Animals'
@@ -9,12 +9,12 @@ import LogoutForm from './components/LogoutForm'
 import Togglable from './components/Togglable'
 import Notification from './components/Notification'
 import ErrorNotification from './components/ErrorNotification'
-
-import animalService from './services/animals'
-import loginService from './services/login'
 import SignUpForm from './components/SignUpForm'
 import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
+
+import animalService from './services/animals'
+import loginService from './services/login'
 
 import petImg from './pictures/pet-care.png'
 import helpImg from './pictures/help.png'
@@ -26,10 +26,9 @@ const App = () => {
   const [users, setUsers] = useState([])
   const [infoMessage, setInfoMessage] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
-
+  const [user, setUser] = useState(null)
   const [username, setUsername] = useState('') 
   const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
 
   useEffect(() => {
     animalService
@@ -38,8 +37,6 @@ const App = () => {
         setAnimals(initialAnimals)
       })
   }, [])
-
-
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedRescueAppUser')
     if (loggedUserJSON) {
@@ -50,6 +47,7 @@ const App = () => {
   }, [])
 
   const animalFormRef = useRef()
+
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -78,7 +76,7 @@ const App = () => {
 
   const deleteAnimal = id => {
     const deletedAnimal = animals.find(a => a.id === id)
-    if (window.confirm(`Poista "${deletedAnimal.name}"?`)) {
+    if (window.confirm(`Poistetaan "${deletedAnimal.name}"?`)) {
       animalService
         .poista(deletedAnimal.id)
         .then(setAnimals(animals.filter((deletedAnimal) => deletedAnimal.id !== id)))  
@@ -92,72 +90,70 @@ const App = () => {
         <header className='header'>
         <div className='contactform'>
             <ContactForm setInfoMessage={setInfoMessage}/>
-          </div>
-          <div className="loginAndsignup">
-            <div className="lItem">
-              <h1>Eläinsuojelukeskus Tassula</h1>
-              <img src={petImg} max-width="100%" width="300px" alt="login"/>
-              <Notification message={infoMessage} />
-              <ErrorNotification message={errorMessage} />
-              <div className='forms'>
-                  <LoginForm
+        </div>
+        <div className="loginAndsignup">
+          <div className="lItem">
+            <h1>Eläinsuojelukeskus Tassula</h1>
+            <img src={petImg} max-width="100%" width="300px" alt="login"/>
+            <Notification message={infoMessage} />
+            <ErrorNotification message={errorMessage} />
+            <div className='forms'>
+                <LoginForm
                   username = {username} password = {password} users={users}
                   handleLogin = {handleLogin}
                   handleUsernameChange={({ target }) => setUsername(target.value)}
                   handlePasswordChange={({ target }) => setPassword(target.value)}/>
-                  <SignUpForm
+                <SignUpForm
                   users = {users} setUsers = {setUsers}
                   setErrorMessage = {setErrorMessage} setInfoMessage = {setInfoMessage}/>
-              </div>
             </div>
           </div>
+        </div>
         </header>
         <Footer name = "Eläinsuojelukeskus Tassula"/>
-        </div>
+      </div>
       }
       {user &&
       <div className="mainpage">
-        <div className="headerAndLogout">
-        <Popup trigger=
-                {
-                <button className='helpbutton'> <img src={helpImg} alt="login"/></button>
-                }
-                modal closeOnDocumentClick>
-                {close => (
-                  <div className='helpWindow'>
-                    <div className='helpContent'>
-                      <button className="close" onClick={close}>Sulje</button>
-                      Toimintojen selitykset
-                      {user.type === "admin" && <img src={adminHelpImg} width="100%" alt="help"/>}
-                      {user.type !== "admin" && <img src={clientHelpImg} width="100%" alt="help"/>}
-                    </div>
-                  </div>
-                )}
-            </Popup>
-          <h1>
-            <img src={petImg} alt="login"/>
-            Eläinsuojelukeskus Tassula
-          </h1>
+        <header className="headerAndLogout">
+        <img className="petImg" src={petImg} alt="login"/>
+        <h1>Eläinsuojelukeskus Tassula</h1>
+          <div className='header-buttons'>
+          <Popup trigger=
+            {<button className='helpbutton'> <img src={helpImg} alt="login"/></button>}
+            modal closeOnDocumentClick>
+            {close => (
+              <div className='helpWindow'>
+                <div className='helpContent'>
+                  <button className="close" onClick={close}>Sulje</button>
+                  Toimintojen selitykset
+                  {user.type === "admin" && <img src={adminHelpImg} width="100%" alt="help"/>}
+                  {user.type !== "admin" && <img src={clientHelpImg} width="100%" alt="help"/>}
+                </div>
+              </div>
+            )}
+          </Popup>
           {user.type==="admin" && 
-              <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
-                <AnimalForm
-                  animals={animals} 
-                  setAnimals={setAnimals}
-                />
-              </Togglable>
+            <Togglable buttonLabel="Lisää eläinkortti" closeLabel="sulje" ref={animalFormRef}>
+              <AnimalForm
+                animals={animals} 
+                setAnimals={setAnimals}
+              />
+            </Togglable>
           }
           <LogoutForm 
             user = {user}
             handleLogout = {handleLogout}
           />
         </div>
+        
+        </header>
         <div className='mainpageContent'>
           <Animals
             animals={animals} 
             deleteAnimal={deleteAnimal}
             setAnimals={setAnimals}
             user={user}
-            users={users}
             setUsers={setUsers}
           />
         </div>

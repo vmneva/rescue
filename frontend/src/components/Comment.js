@@ -33,7 +33,7 @@ const Comment = ({
           setAnimals(animals.map(animal => animal.id !== id ? animal : returnedAnimal))
       })
       .catch(error => {
-          console.error('Error deleting comment:', error)
+          console.error('Virhe kommentin poistossa:', error)
         })
   }
   

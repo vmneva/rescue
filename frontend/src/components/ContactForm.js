@@ -13,7 +13,7 @@ const ContactForm = ( {setInfoMessage} ) => {
     const addMessage = (event) => {
         event.preventDefault()
         const email = document.querySelector('#email').value
-        const infoMessage = `Kiitos! Olemme mahdollisimman pian yhteydessä sähköpostiisi ${email}!`
+        const infoMessage = `Kiitos! Olemme yhteydessä sähköpostiisi ${email}!`
         setInfoMessage(infoMessage)
         setTimeout(() => {
           setInfoMessage(null)

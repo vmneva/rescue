@@ -35,7 +35,7 @@ const Animal = ({
                 setAnimals(animals.map(animal => animal.id !== id ? animal : returnedAnimal))
             })
             .catch(error => {
-                console.error('Error updating likes:', error);
+                console.error('Virhe tykkäyksen lisäyksessä:', error);
             })
     }
     const handleDeleteLike = (event) => {
@@ -52,7 +52,7 @@ const Animal = ({
                 setAnimals(animals.map(animal => animal.id !== id ? animal : returnedAnimal))
             })
             .catch(error => {
-                console.error('Error deleting like:', error);
+                console.error('Virhe tykkäyksen poistossa:', error);
             })
     }
 
@@ -83,11 +83,9 @@ const Animal = ({
         </div>
         }
         <div className="location">{animal.location} </div>
-       
         <div className='animal-image-container'>
             <img id="animalImg" src={animal.image} alt={`${animal.name}`}/>
         </div>
-        
         <div>
             {(likedUsers).includes(user.id) &&
                 <button onClick={handleDeleteLike} className='liked'> <HeartIcon /></button>}
@@ -122,16 +120,15 @@ const Animal = ({
                 )}
             </Popup>
             <div className="birthDate">
-                {"s.  "}{animal.date_of_birth}
+                <p>s. {animal.date_of_birth} ({animal.origin})</p>
             </div>
             <div className='animalName'>
-            <h3>
-                {animal.name + " "}
-                {animal.sex==="male" && <MaleIcon/> }
-                {animal.sex==="female" && <FemaleIcon/> }
-                
-            </h3>
-        </div>
+                <h3>
+                    {animal.name + " "}
+                    {animal.sex==="male" && <MaleIcon/> }
+                    {animal.sex==="female" && <FemaleIcon/> }
+                </h3>
+            </div>
             <div className='profileInfo'>
                 {animal.description}
             </div>
@@ -141,86 +138,4 @@ const Animal = ({
     )
 }
 
-
 export default Animal
-
-/*
- <div className='commentField'>
-            {comments.length < 2 &&
-            <ul className='comments'>
-                {comments.map(comment =>
-                <Comment
-                    key={comment._id}
-                    comment={comment}
-                    animal={animal}
-                    animals={animals}
-                    setAnimals={setAnimals}
-                    user={user}/>
-                )}
-            </ul>
-            }
-            {comments.length >= 2 && (
-                commentsExpanded ? (
-                <>
-                <button className="showcomments" onClick={() => setCommentsExpanded(false)}>Piilota kommentit</button>
-                <ul className='comments'>
-                    {comments.map(comment =>
-                    <Comment
-                        key={comment._id}
-                        comment={comment}
-                        animal={animal}
-                        animals={animals}
-                        setAnimals={setAnimals}
-                        user={user}/>
-                    )}
-                </ul>
-                </>
-            ) : (
-                <>
-                <button className="showcomments" onClick={() => setCommentsExpanded(true)}>Näytä kaikki {comments.length} kommenttia</button>
-                <ul className='comments'>
-                    {comments.slice(2).map(comment => 
-                    <Comment
-                        key={comment._id}
-                        comment={comment}
-                        animal={animal}
-                        animals={animals}
-                        setAnimals={setAnimals}
-                        user={user}/>
-                    )}
-                </ul>
-                </>
-            )
-            )}
-        </div>
-    </div>
-    <div className='commentField'>
-        <Popup trigger=
-            {<button className='showcomments'> Näytä kaikki {comments.length} kommenttia </button>}
-            modal closeOnDocumentClick>
-            {close => (
-            <div className='commentWindow'>
-                <div className="commentContent">
-                    <button className="close" onClick={close}>X</button>
-                    <ul className='comments'>
-                        {comments.map(comment =>
-                        <Comment
-                            key={comment._id}
-                            comment={comment}
-                            animal={animal}
-                            animals={animals}
-                            setAnimals={setAnimals}
-                            user={user}/>
-                        )}
-                    </ul>
-                    <CommentForm
-                        animal={animal}
-                        user={user}
-                        animals={animals}
-                        setAnimals={setAnimals}/>
-                </div>
-            </div>
-            )}
-        </Popup>
-        </div>
-*/

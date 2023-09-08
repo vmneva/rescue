@@ -75,7 +75,6 @@ const Animals = ({
         return dateA - dateB
       }
     }
-
     animalsToShow.sort(sortingFunctions[sortBy])
 
     return (
@@ -133,9 +132,7 @@ const Animals = ({
           animals={animals}
           user = {user}
           setAnimals={setAnimals}
-          deleteAnimal={() => deleteAnimal(animal.id)}
-          toggleFavourite={() => toggleFavourite(animal.id)}  />
-          
+          deleteAnimal={() => deleteAnimal(animal.id)} />
         )}
         </div>
       </div>

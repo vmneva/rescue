@@ -8,6 +8,18 @@ html, body {
 }
 
 /* --------- MAINPAGE --------- */ 
+.header-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.mobile-menu {
+  display: none;
+}
+@media screen and (max-width: 1030px) {
+  .headerAndLogout h1 {
+    display: none;
+  }
+}
 .mainpage {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
@@ -39,10 +51,17 @@ html, body {
   padding: 0;
   text-align: left;
   margin: 0;
-  margin-top: 0px;
+  margin-top: 15px;
+  margin-right: 10px;
 }
 .headerAndLogout img {
   width: 50px;
+  height: 100%;
+  margin-right: 10px;
+}
+.headerAndLogout .petImg {
+  width: 60px;
+  height: 100%;
   margin-right: 10px;
 }
 .mainpageContent {
@@ -58,7 +77,7 @@ html, body {
   padding: 0;
 }
 .helpWindow {
-  background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  background: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   left: 0;
@@ -129,6 +148,11 @@ html, body {
 }
 
 /* --------- LOGOUT --------- */
+@media screen and (max-width: 1030px) {
+  .logout .logoutUser {
+    font-size: 80%;
+  }
+}
 .logout  {
   font-weight: 600;
   font-size: 18px;
@@ -141,7 +165,6 @@ html, body {
   width: 100%;
   position: relative;
   right: 0;
-
 }
 .logout button {
   background-color: tomato;
@@ -409,7 +432,7 @@ html, body {
   font-size: 15px;
   padding: 9px 18px;
   margin-left: 10px;
-  line-height: 35px;
+  line-height: 25px;
   text-align: center;
   position: relative;
   top: 1%;
@@ -523,12 +546,6 @@ html, body {
   box-shadow: #422800 2px 2px 0 0;
   transform: translate(2px, 2px);
 }
-@media (min-width: 768px) {
-  .sortings button {
-    min-width: 120px;
-    padding: 0 25px;
-  }
-}
 .sortings .favouritebutton {
   border: none;
   cursor: pointer;
@@ -546,6 +563,11 @@ html, body {
   width: 40px;
   height: 40px;
   background-color: none;
+}
+.types_buttons {
+  display: grid;
+  justify-items: center;
+  margin-left: 0px;
 }
 .wrapper{
   width: 100%;
@@ -567,9 +589,11 @@ html, body {
   background-color: #f9d8b444;
   border-radius: 10%;
 }
+
 .wrapper .tabs_wrap{
   padding: 20px;
   font-family: 'Montserrat', sans-serif;
+  justify-items: center;
 }
 .wrapper .tabs_wrap ul {
   display: flex;
@@ -624,7 +648,7 @@ html, body {
 }
 .birthDate {
   position: absolute;
-  bottom: 20%; 
+  bottom: 18%; 
   right: 5%; 
 }
 .location {
@@ -638,11 +662,18 @@ html, body {
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
 }
+@media screen and (max-width: 1072px) {
+  .animals  {
+    display: grid;
+    grid-template-columns:max-content;
+    justify-items: center;
+  }
+}
 .animals {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(450px, 1fr));
   margin-bottom: 50px;
-  margin-left: 50px;
+  margin-left: 100px;
   margin-right: 50px;
 }
 .animal-image-container {
@@ -701,7 +732,7 @@ html, body {
   font-weight: 600;
   font-size: 15px;
   border-radius: 10px;
-  width: 50%;
+  width: 100%;
 }
 .editbutton,
 .commentsubmit,
@@ -737,8 +768,7 @@ html, body {
   align-items: center;
   z-index: 999; 
 }
-.commentWindow .close,
-.editWindow .close {
+.commentWindow .close {
   background-color: #c93a07;
   font-family: 'Montserrat', sans-serif;
   color: white;
@@ -747,6 +777,17 @@ html, body {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+.editWindow .close {
+  background-color: tomato;
+  border: 2px solid #422800;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: #422800 2px 2px 0 0;
+  display: inline-block;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  line-height: 5px;
 }
 .commentWindow .close {
   padding: 4px 8px;
@@ -837,6 +878,11 @@ html, body {
 }
 
 /* --------- FOOTER --------- */ 
+@media screen and (max-width: 710px) {
+  .container p, .container h1 {
+    font-size: 70%;
+  }
+}
 .container {
   padding-left: 20px;
   display: flex;

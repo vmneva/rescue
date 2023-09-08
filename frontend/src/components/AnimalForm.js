@@ -39,7 +39,7 @@ const AnimalForm = ({
             };
             reader.readAsDataURL(file);
           } else {
-            alert('Please upload a JPEG image.');
+            alert('Lataathan JPEG kuvan.');
           }
         }
       }
