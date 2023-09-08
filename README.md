@@ -6,6 +6,7 @@ Includes
 - commenting and deleting comments
 - liking and deleting like
 - adding and deleteing animals (admin only!)
+
 Languages:
 - React
 - JavaScript
