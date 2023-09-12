@@ -1,13 +1,14 @@
 # Rescue
-Fullstack website for rescue center that has rescue dogs and cats to adopt.
-Includes
+Fullstack website for rescue center that has rescue dogs and cats to adopt. Published to https://rescueapp.fly.dev/
+
+Includes functions for
 - log in and sign up
-- sorting options
+- sorting
 - commenting and deleting comments
 - liking and deleting like
-- adding and deleteing animals (admin only!)
+- adding, editing and deleting animals (admin only!)
 
-Languages:
+Used technologies:
 - React
 - JavaScript
 - MongoDB
