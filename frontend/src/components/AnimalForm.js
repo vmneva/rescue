@@ -27,19 +27,25 @@ const AnimalForm = ({
     }
 
     const handleImageUpload = (event) => {
-        const file = event.target.files[0];
+        const file = event.target.files[0]
         if (file) {
-          if (file.type === 'image/jpeg') {
-            const reader = new FileReader();
+          if (file.size >= 70000){
+            alert('Liian suuri kuva! Lataa enintään 70KB kuva.')
+          }
+          console.log(file.size)
+          if (file.type === 'image/jpeg' && file.size < 70000) {
+            const reader = new FileReader()
             reader.onloadend = () => {
               setAnimalData((prevData) => ({
                 ...prevData,
                 image: reader.result, 
-              }));
-            };
-            reader.readAsDataURL(file);
-          } else {
-            alert('Lataathan JPEG kuvan.');
+              }))
+            }
+            reader.readAsDataURL(file)
+            console.log(file.size)
+          } 
+          else if (file.type !== 'image/jpeg') {
+            alert('Lataathan JPEG kuvan.')
           }
         }
       }

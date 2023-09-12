@@ -8,11 +8,11 @@ return (
     <footer className="container">
         <div>
             <h1> {name} </h1>
-            <p>
-                Läntinen Pitkäkatu 12 A<br></br>20101 TURKU
+            <p className="address">
+                Testikatu 12<br></br>12345 KAUPUNKI
             </p>
-            <p>
-                02 456 122 (ma-su klo 7-17)<br></br>
+            <p className="contacts">
+                02 123 456 (ma-su klo 7-17)<br></br>
                 asiakaspalvelu@rescuekeskus.com
             </p>
         </div>

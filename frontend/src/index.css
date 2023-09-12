@@ -1,6 +1,6 @@
 html, body {
-  height: 100%;
   width: 100%;
+  height: 100%;
   margin:0;
   padding:0;
   background: #f6efe7;
@@ -12,12 +12,20 @@ html, body {
   display: flex;
   justify-content: flex-end;
 }
-.mobile-menu {
-  display: none;
-}
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1200px) {
   .headerAndLogout h1 {
     display: none;
+  }
+  .mainpage .helpbutton img {
+    width: 40px;
+    margin: 0;
+  }
+  .helpWindow p {
+    width: 100%;
+    font-size: 10px;
+  }
+  .helpWindow img {
+    width: 100%;
   }
 }
 .mainpage {
@@ -32,19 +40,19 @@ html, body {
 }
 .headerAndLogout {
   position: fixed;
+  right: 0%;
   background: white;
+  width: 100%;
   top: 0;
   left: 0;
-  width: 100%;
   padding-top: 5px;
   padding-bottom: 15px;
   padding-left:10px;
   max-height: 50px;
   z-index: 999;
   display: flex; 
-  justify-content: flex-start;
 }
-.mainpage h1 {
+.mainpage .heading_after_login {
   color: black;
   font-size: 25px;
   font-weight: 700;
@@ -57,7 +65,6 @@ html, body {
 .headerAndLogout img {
   width: 50px;
   height: 100%;
-  margin-right: 10px;
 }
 .headerAndLogout .petImg {
   width: 60px;
@@ -83,7 +90,7 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   z-index: 999; 
@@ -95,8 +102,8 @@ html, body {
   box-shadow: #422800 4px 4px 0 0;
   border-radius: 30px;
   color: white;
-  padding: 0 18px;
-  line-height: 30px;
+  padding: 0 10px;
+  line-height: 20px;
   cursor: pointer;
   position: absolute;
   top: 10px;
@@ -133,24 +140,15 @@ html, body {
   text-align: center;
   font-size: 15px;
 }
-.contactnotification {
-  border-style: none;
-  display: block;
-  font-weight: normal;
-  margin-bottom: 1.25rem;
-  padding: 10px;
-  font-size: 0.8125rem;
-  color: white;
-  box-shadow: 0px 1px 5px 0 darkslategrey;
-  background-color: #43ac6a;
-  text-align: center;
-  font-size: 15px;
-}
 
 /* --------- LOGOUT --------- */
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1200px) {
   .logout .logoutUser {
-    font-size: 80%;
+    font-size: 15px;
+  }
+  .mainpage .logout button {
+    line-height: 20px;
+    font-size: 10px;
   }
 }
 .logout  {
@@ -162,9 +160,8 @@ html, body {
   right: 1%;
 }
 .logout .logoutUser {
-  width: 100%;
   position: relative;
-  right: 0;
+  text-align: right;
 }
 .logout button {
   background-color: tomato;
@@ -181,7 +178,6 @@ html, body {
   right: 0;
   font-size: 15px;
   font-weight: 500;
-  cursor: pointer; 
 }
 .logout button:hover {
   background-color: #e77373;
@@ -189,72 +185,56 @@ html, body {
 
 
 /* ---------  LOG IN AND SIGN UP ---------*/
-
+@media screen and (max-width: 1200px) {
+  .loginpage {
+    height: 100%;
+    justify-content: center;
+  }
+  .heading {
+    font-size: 20px;
+  }
+  .lItem h2 {
+    font-size: 18px;
+  }
+  img {
+    width: 200px;
+    height: 100%;
+  }
+  .header {
+    width: min-content;
+    height: min-content;
+  }
+}
+.loginpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: #f6efe7;
+}
+.loginAndsignup {
+  padding-bottom: 20%;
+  padding-top: 20%;
+}
 .header {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+  width: fit-content;
+  height: 200%;
 }
-.header h1{
-  color: black;
-  font-size: 40px;
-  font-weight: 900;
-  padding: 0 0 20px 0;
-  text-align: center;
-}
-.loginForm h2,
-.singupForm h2{
-  color: black;
-  font-size: 20px;
-  font-weight: 900;
-  text-align: center;
-}
-.loginAndsignup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f6efe7;
-  padding-bottom: 150px;
-  padding-top: 200px;
-}
-.loginpage {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  margin-bottom: 250px;
-  padding-top: 100px;
-}
-.forms {
-  display: flex;
-  align-items: center;
-}
-.lItem {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  width: 600px;
-}
-.loginForm,
-.signupForm {
-  background-color: #ffffff;
-  padding: 20px;
-  width: 300px;
-  margin: 0 auto;
-}
-.loginForm h2,
-.signUpForm h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
+.heading {
+  font-size: 30px;
 }
 .loginForm input,
 .signupForm input {
-  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
+  width: 70%;
 }
 .login, .signup {
   background-color: #fbeee0;
@@ -266,8 +246,6 @@ html, body {
   font-weight: 600;
   font-size: 15px;
   line-height: 25px;
-  width: 100%;
-  padding: 10px;
 }
 .login:hover,
 .signup:hover {
@@ -290,85 +268,37 @@ html, body {
 .signupForm .visible:hover {
   text-decoration: underline;
 }
-
-/* --------- CONTACT FORM --------- */
-.contactform {
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  font-family: 'Montserrat', sans-serif;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-  right: 1%;
-  position: absolute;
-  top: 0%;
-}
-.contactinfo input[type=text], 
-.contactinfo textarea {
-  width: 100%; 
-  padding: 12px; 
-  border: 1px solid #ccc; 
-  border-radius: 4px;
-  box-sizing: border-box; 
-  margin-top: 6px; 
-  margin-bottom: 16px; 
-  resize: vertical;
-  font-family: 'Montserrat', sans-serif;
-}
-.contactinfo button[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  position: absolute;
-  right: 8%;
-  top: 82%;
-}
-.contactinfo button[type=submit]:hover {
-  background-color: #45a049;
-}
-.contactinfo {
+.loginAndsignup {
   display: flex;
-  justify-content: left;
+  flex-direction: column;
   align-items: center;
-  background-color: transparent;
+}
+.lItem {
   text-align: center;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
-.contactinfo img {
-  width: 100px;
-  border-radius: 50%;
-  padding: 10px;
+.h1 {
+  font-size: 24px;
 }
-.contactbutton {
-  background-color: #0491aa;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+img {
+  max-width: 100%;
+  height: auto;
 }
-.contactbutton:hover {
-  background-color: #03798d;
-}
-.closecontact {
-  background-color: #aa3004;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  position: absolute;
-  right: 20%;
-  top: 82%;
-}
-.closecontact:hover {
-  background-color: #8d2a06;
+.forms {
+  margin-top: 20px;
+  background-color: #ffffff;
 }
 
 /* --------- ANIMAL FORM --------- */
+@media screen and (max-width: 768px) {
+  .headerAndLogout .listbutton {
+    line-height: 15px;
+    font-size: 10px;
+  }
+}
 .AnimalForm {
   background-color: #e2d1ca;
   padding: 15px;
@@ -484,7 +414,8 @@ html, body {
   font-weight: 500;
   cursor: pointer;
 }
-.sortForm .closeSorting:hover {
+.sortForm .closeSorting:hover,
+.helpWindow .close:hover {
   background-color: #e77373;
 }
 .sortings {
@@ -565,14 +496,13 @@ html, body {
   background-color: none;
 }
 .types_buttons {
-  display: grid;
+  display: flex;
   justify-items: center;
-  margin-left: 0px;
 }
 .wrapper{
   width: 100%;
   height: 100%;
-  margin: 15px auto 0;
+  margin: 15px 0;
 }
 .wrapper button {
   border: none;
@@ -589,33 +519,27 @@ html, body {
   background-color: #f9d8b444;
   border-radius: 10%;
 }
-
 .wrapper .tabs_wrap{
   padding: 20px;
   font-family: 'Montserrat', sans-serif;
   justify-items: center;
+  margin-right: 0px;
 }
 .wrapper .tabs_wrap ul {
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 .wrapper .tabs_wrap ul li{
   width: 135px;
   text-align: center;
-  background: #e9ecf1;
   border-right: 1px solid #c1c4c9;
   padding: 13px 15px;
   cursor: pointer;
-  -webkit-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
   list-style: none;
   background-color: #ffffff;
 }
 .wrapper .tabs_wrap ul li:first-child{
-  border-top-left-radius: 25px;
+  border-top-left-radius: 25;
   border-bottom-left-radius: 25px;
 }
 .wrapper .tabs_wrap ul li:last-child{
@@ -648,8 +572,8 @@ html, body {
 }
 .birthDate {
   position: absolute;
-  bottom: 18%; 
-  right: 5%; 
+  top: 485px; 
+  right: 25px; 
 }
 .location {
   padding-right: 15px;
@@ -662,19 +586,24 @@ html, body {
   font-weight: 500;
   font-family: 'Montserrat', sans-serif;
 }
-@media screen and (max-width: 1072px) {
+@media screen and (max-width: 1200px) {
   .animals  {
-    display: grid;
-    grid-template-columns:max-content;
+    display: flex;
     justify-items: center;
+  }
+  #animalImg {
+    width: 100%;
+  }
+  .animal {
+    display: block;
   }
 }
 .animals {
   display: grid;
   grid-template-columns: repeat(auto-fill,minmax(450px, 1fr));
   margin-bottom: 50px;
-  margin-left: 100px;
-  margin-right: 50px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .animal-image-container {
   display: flex;
@@ -751,7 +680,7 @@ html, body {
   text-align: center;
 }
 .commentContent {
-  width: 20%;
+  width: 40%;
   border: 1px solid #ccc;
   border-radius: 10px;
 }
@@ -851,6 +780,9 @@ html, body {
 
 
 /* --------- COMMENTS --------- */ 
+.commentWindow {
+  width: 100%;
+}
 .comments {
   list-style: none;
   padding: 0;
@@ -867,7 +799,7 @@ html, body {
   margin-bottom: 5px;
 }
 .comment-content {
-  flex:content;
+  flex: content;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -878,42 +810,33 @@ html, body {
 }
 
 /* --------- FOOTER --------- */ 
-@media screen and (max-width: 710px) {
-  .container p, .container h1 {
-    font-size: 70%;
-  }
-}
 .container {
-  padding-left: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: left;
-  background-color: #333; /* Background color */
+  background-color: #333;
   color: #ffffffb6;
-  padding: 10px;
+  padding: 20px;
   font-family: 'Montserrat', sans-serif;
   width: 100%;
   min-height: 250px;
-  box-sizing: content-box;
-  position: sticky;
-  top: 100%;
   font-weight: 200;
+  text-align: left;
 }
 .container h1 {
-  margin-bottom: 40px;
-  position: relative;
-  font-size: 25px;
-  color: #ffffffb6;
+  font-size: 24px;
+  padding-bottom: 10px;
 }
-footer p {
-  font-size: 13px;
-  font-family: 'Montserrat', sans-serif;
-  column-count: 2;
-  column-gap: 10px;
+.container p {
+  font-size: 14px;
+  margin: 0;
+}
+.container .address {
+  padding-bottom: 10px;
 }
 .social {
-  padding-top: 40px;
+  display: flex;
+  padding-top: 2%;
 }
 .social .facebook,
 .social .instagram {
@@ -930,4 +853,20 @@ footer p {
 }
 .social .instagram {
   background: #262626;
+}
+@media screen and (max-width: 1200px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .container h1 {
+    font-size: 20px;
+  }
+  .social {
+    margin-top: 20px;
+  }
+  .facebook, .instagram {
+    font-size: 20px;
+    margin: 0 10px;
+  }
 }

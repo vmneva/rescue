@@ -10,7 +10,6 @@ import Togglable from './components/Togglable'
 import Notification from './components/Notification'
 import ErrorNotification from './components/ErrorNotification'
 import SignUpForm from './components/SignUpForm'
-import ContactForm from './components/ContactForm'
 import Footer from './components/Footer'
 
 import animalService from './services/animals'
@@ -88,12 +87,9 @@ const App = () => {
       {!user &&
       <div className='loginpage'>
         <header className='header'>
-        <div className='contactform'>
-            <ContactForm setInfoMessage={setInfoMessage}/>
-        </div>
         <div className="loginAndsignup">
           <div className="lItem">
-            <h1>Eläinsuojelukeskus Tassula</h1>
+            <h1 className="heading">Eläinsuojelukeskus Tassula</h1>
             <img src={petImg} max-width="100%" width="300px" alt="login"/>
             <Notification message={infoMessage} />
             <ErrorNotification message={errorMessage} />
@@ -117,7 +113,7 @@ const App = () => {
       <div className="mainpage">
         <header className="headerAndLogout">
         <img className="petImg" src={petImg} alt="login"/>
-        <h1>Eläinsuojelukeskus Tassula</h1>
+        <h1 className='heading_after_login'>Eläinsuojelukeskus Tassula</h1>
           <div className='header-buttons'>
           <Popup trigger=
             {<button className='helpbutton'> <img src={helpImg} alt="login"/></button>}
@@ -125,8 +121,8 @@ const App = () => {
             {close => (
               <div className='helpWindow'>
                 <div className='helpContent'>
-                  <button className="close" onClick={close}>Sulje</button>
-                  Toimintojen selitykset
+                  <button className="close" onClick={close}>x</button>
+                  <p>Toimintojen selitykset</p>
                   {user.type === "admin" && <img src={adminHelpImg} width="100%" alt="help"/>}
                   {user.type !== "admin" && <img src={clientHelpImg} width="100%" alt="help"/>}
                 </div>

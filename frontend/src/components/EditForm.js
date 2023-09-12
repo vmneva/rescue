@@ -24,14 +24,17 @@ const EditForm = ({
     const handleImageUpload = (event) => {
         const file = event.target.files[0]
         if (file) {
-          if (file.type === 'image/jpeg') {
+          if (file.size >= 70000){
+            alert('Liian suuri kuva! Lataa enintään 70KB kuva.')
+          }
+          if (file.type === 'image/jpeg' && file.size < 70000) {
             const reader = new FileReader()
             reader.onloadend = () => {
               setUpdatedImage(reader.result)
             }
             reader.readAsDataURL(file)
-          } else {
-            alert('Lataa JPEG kuva.');
+          } else if (file.type !== 'image/jpeg') {
+            alert('Lataa JPG kuva.')
           }
         }
       }

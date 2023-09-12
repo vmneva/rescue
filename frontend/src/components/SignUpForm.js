@@ -26,18 +26,28 @@ const SignUpForm = ({
     }
 
     const addUser = async (event) => {
-        event.preventDefault()
-        const type = "client"
-        const animals = []
-        try {
-          const newUser = await userService.create({
-            name, username, password, type, animals
-          })
-          setInfoMessage('Uusi käyttäjä luotu. Kirjaudu sisään!')
-          setTimeout(() => {
-          setInfoMessage(null)
-          }, 3000)
-          setUsers(users.concat(newUser))
+      event.preventDefault()
+      const type = "client"
+      const animals = []
+
+      const hasNumber = /\d/.test(password)
+      if (!hasNumber) {
+        setErrorMessage('Salasanan sisällettävä ainakin yksi numero.')
+        setTimeout(() => {
+            setErrorMessage(null)
+        }, 3000)
+      return
+      }
+
+      try {
+        const newUser = await userService.create({
+          name, username, password, type, animals
+        })
+        setInfoMessage('Uusi käyttäjä luotu. Kirjaudu sisään!')
+        setTimeout(() => {
+        setInfoMessage(null)
+        }, 3000)
+        setUsers(users.concat(newUser))
         }
         catch (exception) {
           setErrorMessage('Käyttäjänimi varattu!')
