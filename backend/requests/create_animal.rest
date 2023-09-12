@@ -1,0 +1,14 @@
+POST http://localhost:3001/api/animals
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZtbmV2YSIsImlkIjoiNjRiZWEzNzc4ODdkMzE3NDIxYzZlMTNkIiwiaWF0IjoxNjkwMjE1MzM2fQ.moXI8Gy04xEikjH308Zc-WacEh3zDYdW-74BVgZD9dQ
+
+{
+    "name": "Mirri",
+    "type": "cat",
+    "date_of_birth": "05.06.2020",
+    "sex": "female",
+    "image": ,
+    "breed": "norjalainen metsäkissa",
+    "location": "Espoo",
+    "origin": "Puola"
+}

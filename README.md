@@ -12,5 +12,6 @@ Used technologies:
 - React
 - JavaScript
 - MongoDB
+- Node.js
 - CSS
 - HTML

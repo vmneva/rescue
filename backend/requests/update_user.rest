@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/users/64c15ae917ae4f1325f1a8a7
+Content-Type: application/json
+
+{
+    "username": "testias",
+    "type": "client"
+}

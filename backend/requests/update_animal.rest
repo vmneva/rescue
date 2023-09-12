@@ -1,0 +1,10 @@
+
+PUT http://localhost:3001/api/animals/64cfd1aad687fd4d11339bb6
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZtbmV2YSIsImlkIjoiNjRiZWEzNzc4ODdkMzE3NDIxYzZlMTNkIiwiaWF0IjoxNjkwMjE1MzM2fQ.moXI8Gy04xEikjH308Zc-WacEh3zDYdW-74BVgZD9dQ
+
+
+{
+    "description": "Olen Martta. Rakastan metsästää hiiriä, toivoisinkin uuden kotini löytyvän maatilalta tai rauhallisesta pihapiiristä.",
+    "origin": "Latvia"
+}
