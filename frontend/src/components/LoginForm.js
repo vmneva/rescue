@@ -13,11 +13,11 @@ const LoginForm = ({
   const [isVisible, setIsVisible] = useState(false)
 
   const togglePassword = () => {
-    let input = document.getElementById("salasana1");
+    let input = document.getElementById("salasana")
     if (input.type === "password") {
-      input.type = "text";
+      input.type = "text"
     } else {
-      input.type = "password";
+      input.type = "password"
     }
     setIsVisible(!isVisible)
   }
@@ -36,7 +36,7 @@ const LoginForm = ({
           </div>
           <div>
             <input
-              id="salasana1"
+              id="salasana"
               type="password"
               value={password}
               onChange={handlePasswordChange}
