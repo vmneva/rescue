@@ -1,7 +1,7 @@
 const animalsRouter = require('express').Router()
 const Animal = require('../models/animal')
 const User = require('../models/user')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken') //for authentication log in
 
 animalsRouter.get('/', async (request, response) => {
     const animals = await Animal

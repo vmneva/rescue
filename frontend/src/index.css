@@ -1,8 +1,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  margin:0;
-  padding:0;
+  padding: 0;
   background: #f6efe7;
   font-family: 'Montserrat', sans-serif;
 }
@@ -186,10 +185,6 @@ html, body {
 
 /* ---------  LOG IN AND SIGN UP ---------*/
 @media screen and (max-width: 1200px) {
-  .loginpage {
-    height: 100%;
-    justify-content: center;
-  }
   .heading {
     font-size: 20px;
   }
@@ -221,7 +216,7 @@ html, body {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   width: fit-content;
-  height: 200%;
+  height: 100%;
 }
 .heading {
   font-size: 30px;

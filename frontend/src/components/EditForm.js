@@ -18,7 +18,7 @@ const EditForm = ({
       setUpdatedDescription(event.target.value)
     }
     const handleLocationChange = (event) => {
-      setUpdatedLocation(event.target.value);
+      setUpdatedLocation(event.target.value)
     }
 
     const handleImageUpload = (event) => {

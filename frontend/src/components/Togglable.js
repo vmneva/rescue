@@ -1,7 +1,6 @@
 import { useState, useImperativeHandle, forwardRef } from 'react'
 import '../index.css'
 
-
 const Togglable = forwardRef((props, ref) => {
   const [visible, setVisible] = useState(false)
 

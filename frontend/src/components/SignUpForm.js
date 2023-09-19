@@ -29,7 +29,7 @@ const SignUpForm = ({
       event.preventDefault()
       const type = "client"
       const animals = []
-
+      //is there a digit in password
       const hasNumber = /\d/.test(password)
       if (!hasNumber) {
         setErrorMessage('Salasanan sisällettävä ainakin yksi numero.')
@@ -61,11 +61,11 @@ const SignUpForm = ({
     }
 
     const togglePassword = () => {
-      let input = document.getElementById("salasana");
+      let input = document.getElementById("salasana")
       if (input.type === "password") {
-        input.type = "text";
+        input.type = "text"
       } else {
-        input.type = "password";
+        input.type = "password"
       }
       setIsVisible(!isVisible)
     }

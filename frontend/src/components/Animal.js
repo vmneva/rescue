@@ -52,7 +52,7 @@ const Animal = ({
                 setAnimals(animals.map(animal => animal.id !== id ? animal : returnedAnimal))
             })
             .catch(error => {
-                console.error('Virhe tykkäyksen poistossa:', error);
+                console.error('Virhe tykkäyksen poistossa:', error)
             })
     }
 
